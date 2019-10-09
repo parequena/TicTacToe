@@ -4,6 +4,7 @@
 #include <AIPlayer.h>
 #include <HumanPlayer.h>
 #include <Token.h>
+#include <Selector.h>
 
 #define df_boardPath "./res/box.png"
 
@@ -14,10 +15,49 @@ bool Board::gameEnded() const
     return false;
 }
 
+#include <iostream>
+
 // Is valid
 bool Board::isValid(uint8_t position) const
 {
-    return m_board[position] == 0;
+    return position < 9 && m_board[position] == 0;
+}
+
+// Check winner.
+bool Board::checkWinner() const
+{
+    return (m_board[0] != 0
+            && (m_board[0] == m_board[1] && m_board[0] == m_board[2]                    /* 0-1-2 */
+            ||  m_board[0] == m_board[3] && m_board[0] == m_board[6]                    /* 0-3-6 */
+            ||  m_board[0] == m_board[4] && m_board[0] == m_board[8]))                  /* 0-4-8 */
+        || (m_board[3] != 0 && m_board[3] == m_board[4] && m_board[3] == m_board[5])    /* 3-4-5 */
+        || (m_board[6] != 0 && m_board[6] == m_board[7] && m_board[6] == m_board[8])    /* 6-7-8 */
+        || (m_board[1] != 0 && m_board[1] == m_board[4] && m_board[1] == m_board[7])    /* 1-4-7 */
+        || (m_board[2] != 0
+            && (m_board[2] == m_board[5] && m_board[2] == m_board[8]                    /* 2-5-8 */
+            ||  m_board[2] == m_board[4] && m_board[2] == m_board[6]));                 /* 2-4-6 */
+}
+
+// Get the winner.
+uint8_t Board::getWinner() const
+{
+    if(m_board[0] == m_board[1] && m_board[0] == m_board[2]
+    ||  m_board[0] == m_board[3] && m_board[0] == m_board[6]
+    ||  m_board[0] == m_board[4] && m_board[0] == m_board[8])
+        return m_board[0];
+
+    if(m_board[3] == m_board[4] && m_board[3] == m_board[5])
+        return m_board[3];
+    if(m_board[6] == m_board[7] && m_board[6] == m_board[8])
+        return m_board[6];
+    if(m_board[1] == m_board[4] && m_board[1] == m_board[7])
+        return m_board[1];
+    
+    if(m_board[2] == m_board[5] && m_board[2] == m_board[8]
+    ||  m_board[2] == m_board[4] && m_board[2] == m_board[6])
+        return m_board[2];
+
+    return 0;
 }
 
 // Dtor.
@@ -87,7 +127,6 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
     // Set the window
     if (!window)
         throw std::logic_error("Null SFML Window received (Board).");
-
     m_window = window;
 
     // Load texture.
@@ -97,14 +136,13 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
     // Load Sprites.
     m_window->clear(sf::Color::White);
 
-    int coords[3] = {df_initX, 186, 314};
+    uint16_t coords[3] = {df_init, 186, 314};
     for(auto i = 0; i < 9; ++i)
     {
         m_sprites[i] = new sf::Sprite(*m_texture);
         m_sprites[i]->setPosition(coords[i/3], coords[i%3]);
     }
 
-    std::cin.get();
     // Load players.
     if(nplayers == 0)
     {
@@ -113,28 +151,49 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
     }
     else if(nplayers == 1)
     {
-        m_players[0] = new HumanPlayer();
+        m_players[0] = new HumanPlayer(m_window);
         m_players[1] = new AIPlayer(difficulty);
     }
     else
     {
-        m_players[0] = new HumanPlayer();
-        m_players[1] = new HumanPlayer();
+        m_players[0] = new HumanPlayer(m_window);
+        m_players[1] = new HumanPlayer(m_window);
     }
     
 };
 
 // Play.
-void Board::play()
+uint8_t Board::play()
 {
     uint8_t selected = 0;
+    // Draw the board.
+    draw();
+
     do
     {
         do
         {
             selected = m_players[m_firstPlayer]->selectBox();
         } while(!isValid(selected));
+
+        // Set the selected to the current player.
+        m_board[selected] = static_cast<uint8_t>(m_firstPlayer) + 1;
+
+        // Create the token.
+        m_tokens[m_currToken++] = new Token(m_window, selected, static_cast<TokenType>(m_firstPlayer));
+
+        // Draw the board.
+        draw();
+
+        // Swap player.
+        m_firstPlayer = !m_firstPlayer;
+
+        if(checkWinner())
+            return getWinner();
+
     } while (!gameEnded());
+
+    return 0;
 }
 
 // Draw.

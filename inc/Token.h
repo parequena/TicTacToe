@@ -2,8 +2,9 @@
 #define __TOKEN_H__
 
 enum class TokenType { X, O };
-
 namespace sf { class Texture; class Sprite; class RenderWindow; }
+
+#define df_init 58
 
 class Token
 {
@@ -12,9 +13,6 @@ class Token
 
     // Window.
     sf::RenderWindow* m_window;
-    
-    // Position.
-    uint16_t m_x, m_y;
 
     // Texture.
     sf::Texture* m_texture;

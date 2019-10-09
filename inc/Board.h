@@ -4,6 +4,7 @@
 namespace sf { class Texture; class Sprite; class RenderWindow; }
 class Player;
 class Token;
+class Selector;
 
 class Board
 {
@@ -37,6 +38,12 @@ class Board
     // Is valid
     bool isValid(uint8_t position) const;
 
+    // Check winner.
+    bool checkWinner() const;
+
+    // Get the winner.
+    uint8_t getWinner() const;
+
     // Dtor.
     ~Board();
 
@@ -45,7 +52,7 @@ public:
     Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty);
 
     // Play.
-    void play();
+    uint8_t play();
 
     // Draw.
     void draw();

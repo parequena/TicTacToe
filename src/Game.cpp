@@ -17,6 +17,9 @@ Game::Game():
     m_mainMenun(nullptr)*/,
     m_board(nullptr)
 {
+    // This cout just reserves the stream-out buffer.
+    std::cout << "Game started\n";
+
     // Create the window.
     m_window = new sf::RenderWindow(sf::VideoMode(df_windSize, df_windSize), df_gameName,
         sf::Style::Titlebar | sf::Style::Close);
@@ -42,5 +45,6 @@ Game::~Game()
 // Play.
 void Game::play()
 {
-
+    int winner = static_cast<int>(m_board->play());
+    std::cout << "Player: " << winner << " won the game.\n";
 }

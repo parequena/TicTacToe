@@ -50,6 +50,19 @@
         "bit": "cpp",
         "map": "cpp",
         "iomanip": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "csignal": "cpp",
+        "atomic": "cpp",
+        "cinttypes": "cpp",
+        "complex": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp",
+        "algorithm": "cpp",
+        "iterator": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "valarray": "cpp",
+        "variant": "cpp"
     }
 }
