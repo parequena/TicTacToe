@@ -28,7 +28,7 @@ Game::Game():
     m_window->setPosition(sf::Vector2i(sf::VideoMode::getDesktopMode().width / 2 - df_windSize / 2, 
         sf::VideoMode::getDesktopMode().height / 2 - df_windSize / 2));
 
-    m_board = new Board(m_window, 2, 0);
+    m_board = new Board(m_window, 1, 0);
 }
 
 // Dtor.

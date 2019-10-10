@@ -3,39 +3,55 @@
 
 #define df_selectorPath "./res/selector"
 
-// Init ids
+// Init idsx
 uint8_t Selector::m_id = 1;
 
-// Move up.
-uint8_t moveUp(uint8_t position)
+struct KeyToMethod
 {
-    if(position != 0 && position != 1 && position != 2)
-        return position - 3;
-    return position;
+    sf::Keyboard::Key m_key;
+    void (*pfunc)(uint8_t&);
+};
+
+KeyToMethod ktom[] =
+{
+    { sf::Keyboard::W      , moveUp    },
+    { sf::Keyboard::A      , moveLeft  },
+    { sf::Keyboard::S      , moveDown  },
+    { sf::Keyboard::D      , moveRight },
+    { sf::Keyboard::Unknown, 0}
+};
+
+// Move up.
+void moveUp(uint8_t& pos)
+{
+    if(pos != 0 && pos != 1 && pos != 2)
+        pos -= 3;
 }
 
 // Move left.
-uint8_t moveLeft(uint8_t position)
+void moveLeft(uint8_t& pos)
 {
-    if(position != 0 && position != 3 && position != 6)
-        return position - 1;
-    return position;
+    if(pos != 0 && pos != 3 && pos != 6)
+        --pos;
 }
 
 // Move right.
-uint8_t moveRight(uint8_t position)
+void moveRight(uint8_t& pos)
 {
-    if(position != 2 && position != 5 && position != 8)
-        return position + 1;
-    return position;
+    if(pos != 2 && pos != 5 && pos != 8)
+        ++pos;
 }
 
 // Move down.
-uint8_t moveDown(uint8_t position)
+void moveDown(uint8_t& pos)
 {
-    if(position != 6 && position != 7 && position != 8)
-        return position + 3;
-    return position;
+    if(pos != 6 && pos != 7 && pos != 8)
+        pos += 3;
+}
+
+void waitUntilRelease(sf::Keyboard::Key k)
+{
+    while(sf::Keyboard::isKeyPressed(k));
 }
 
 //////////////////////////////////////////////////////////////////
@@ -43,8 +59,11 @@ uint8_t moveDown(uint8_t position)
 //////////////////////////////////////////////////////////////////
 // Ctor.
 Selector::Selector(sf::RenderWindow* window):
+    m_pos{58, 186, 314},
+    m_position(5),
     m_window(nullptr),
     m_texture(nullptr),
+
     m_sprite(nullptr)
 {
     // Set the window
@@ -55,4 +74,75 @@ Selector::Selector(sf::RenderWindow* window):
     // Load texture.
     m_texture = new sf::Texture();
     m_texture->loadFromFile(df_selectorPath + std::to_string(m_id++) + ".png");
+
+    // Load sprite.
+    m_sprite = new sf::Sprite(*m_texture);
+
+    // Just in case.
+    waitUntilRelease(sf::Keyboard::Return);
+}
+
+// Dtor.
+Selector::~Selector()
+{
+    if(m_window)
+    {
+        delete m_window;
+        m_window = nullptr;
+    }
+
+    if(m_texture)
+    {
+        delete m_texture;
+        m_texture = nullptr;
+    }
+
+    if(m_sprite)
+    {
+        delete m_sprite;
+        m_sprite = nullptr;
+    }
+
+    if(m_keyboard)
+    {
+        delete m_keyboard;
+        m_keyboard = nullptr;
+    }
+}
+
+// Select wich position are we going to place the Token.
+uint8_t Selector::selectBox()
+{
+    m_position = 4;
+    m_keyboard = ktom;
+    
+    do
+    {
+        while(m_keyboard->m_key != sf::Keyboard::Unknown)
+        {
+            if(sf::Keyboard::isKeyPressed(m_keyboard->m_key))
+            {
+                m_keyboard->pfunc(m_position);
+                waitUntilRelease(m_keyboard->m_key);
+            }
+            ++m_keyboard;
+        }
+
+        m_sprite->setPosition(m_pos[m_position%3], m_pos[m_position/3]);
+        draw();
+        m_keyboard = ktom; // Set keyboard to init.
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+            break;
+    } while(true);
+    waitUntilRelease(sf::Keyboard::Return);
+
+    return m_position;
+}
+
+#include <iostream>
+// Draw.
+void Selector::draw()
+{
+    m_window->draw(*m_sprite);
+    m_window->display(); 
 }

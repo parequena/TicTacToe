@@ -205,5 +205,7 @@ void Board::draw()
     for(auto i = 0; i < m_currToken; ++i)
         m_tokens[i]->draw();
 
+    // m_players[m_firstPlayer]->draw();
+
     m_window->display();
 }

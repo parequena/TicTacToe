@@ -20,6 +20,9 @@ public:
 
     // Select wich position are we going to place the Token.
     uint8_t selectBox() const override;
+
+    // Draw
+    void draw();
 };
 
 #endif

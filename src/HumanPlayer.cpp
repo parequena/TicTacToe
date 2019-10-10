@@ -5,7 +5,12 @@
 // Dtor.
 HumanPlayer::~HumanPlayer()
 {
-
+    // Delete the window.
+    if(m_selector)
+    {
+        delete m_selector;
+        m_selector = nullptr;
+    }
 }
 
 //////////////////////////////////////////////////////////////////
@@ -18,12 +23,14 @@ HumanPlayer::HumanPlayer(sf::RenderWindow* window):
     m_selector = new Selector(window);
 }
 
-#include <iostream>
-
 // Select wich position are we going to place the Token.
 uint8_t HumanPlayer::selectBox() const
 {
-    int in;
-    std::cin >> in;
-    return static_cast<uint8_t>(in);
+    return m_selector->selectBox();
+}
+
+// Draw
+void HumanPlayer::draw()
+{
+    m_selector->draw();
 }

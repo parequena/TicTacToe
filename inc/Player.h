@@ -11,6 +11,9 @@ public:
 
     // Select wich position are we going to place the Token.
     virtual uint8_t selectBox() const = 0;
+
+    // // Draw.
+    // virtual void draw() = 0;
 };
 
 #endif
