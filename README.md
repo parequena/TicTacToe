@@ -3,7 +3,9 @@
 This TicTacToe developped by Pablo Requena González using SFML 2.5.2 on Manajro (Arch Linux).
 
 [Twitter](https://twitter.com/conPdePABLO)
+
 [LinkedIn](https://www.linkedin.com/in/pablo-requena-gonz%C3%A1lez-387366146/)
+
 [GitHub](https://github.com/parequena)
 
 ## Features
@@ -60,8 +62,15 @@ Thanks to make, we can compile the code using a terminal.
 
 
 - Green selector
+
 ![Selector for player 1 (Human)](https://github.com/parequena/TicTacToe/blob/master/res/selector1.png)
+
+
 - Purple selector
+
 ![Selector for player 2 (Human)](https://github.com/parequena/TicTacToe/blob/master/res/selector2.png)
+
+
 - AI Splash
+
 ![AI Splash](https://github.com/parequena/TicTacToe/blob/master/res/ai.png)
