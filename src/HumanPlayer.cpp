@@ -18,6 +18,11 @@ KeyToMethod ktom[] =
     { sf::Keyboard::A      , moveLeft  },
     { sf::Keyboard::S      , moveDown  },
     { sf::Keyboard::D      , moveRight },
+
+    { sf::Keyboard::Up     , moveUp    },
+    { sf::Keyboard::Left   , moveLeft  },
+    { sf::Keyboard::Down   , moveDown  },
+    { sf::Keyboard::Right  , moveRight },
     { sf::Keyboard::Unknown, 0}
 };
 
