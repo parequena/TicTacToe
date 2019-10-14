@@ -62,7 +62,7 @@ AIPlayer::AIPlayer(sf::RenderWindow* window, uint8_t difficulty)
 }
 
 // Select wich position are we going to place the Token.
-uint8_t AIPlayer::selectBox(const uint8_t board[9]) const
+uint8_t AIPlayer::selectBox(const uint8_t board[9])
 {
     std::vector<uint8_t> freePos;
     freePos.reserve(9); // Reserve for 9.

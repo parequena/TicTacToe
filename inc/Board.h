@@ -4,7 +4,6 @@
 namespace sf { class Texture; class Sprite; class RenderWindow; }
 class Player;
 class Token;
-class Selector;
 
 class Board
 {

@@ -4,7 +4,6 @@
 #include <AIPlayer.h>
 #include <HumanPlayer.h>
 #include <Token.h>
-#include <Selector.h>
 
 #define df_boardPath "./res/box.png"
 

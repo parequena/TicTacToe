@@ -29,7 +29,7 @@ public:
     AIPlayer(sf::RenderWindow* window, uint8_t difficulty);
 
     // Select wich position are we going to place the Token.
-    uint8_t selectBox(const uint8_t board[9]) const override;
+    uint8_t selectBox(const uint8_t board[9]) override;
 
     // Draw
     void draw() override;
