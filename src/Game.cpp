@@ -4,17 +4,19 @@
 
 #include <Game.h>
 #include <Board.h>
+#include <Menu.h>
 
 #define df_windSize 500
 #define df_gameName "TicTacToe"
+
 
 //////////////////////////////////////////////////////////////////
 ///////////////////////////// PUBLIC /////////////////////////////
 //////////////////////////////////////////////////////////////////
 // Ctor.
 Game::Game():
-    m_window(nullptr)/*,
-    m_mainMenun(nullptr)*/,
+    m_window(nullptr),
+    m_menu(nullptr),
     m_board(nullptr)
 {
     // This cout just reserves the stream-out buffer.
@@ -28,7 +30,9 @@ Game::Game():
     m_window->setPosition(sf::Vector2i(sf::VideoMode::getDesktopMode().width / 2 - df_windSize / 2, 
         sf::VideoMode::getDesktopMode().height / 2 - df_windSize / 2));
 
-    m_board = new Board(m_window, 1, 0);
+    // Set the menu
+    m_menu = new Menu(m_window);
+    // m_board = new Board(m_window, 1, 0);
 }
 
 // Dtor.
@@ -45,6 +49,16 @@ Game::~Game()
 // Play.
 void Game::play()
 {
+    MenuSelect* s = m_menu->select();
+    if(!s->m_play)
+    {
+        std::cout << "Exit\n";
+        return;
+    }
+
+    // Play the game.
+    m_board = new Board(m_window, s->m_nPlayers, s->m_AILevel);
+
     int winner = static_cast<int>(m_board->play());
     std::cout << "Player: " << winner << " won the game.\n";
 }

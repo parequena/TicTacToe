@@ -25,6 +25,9 @@ AIPlayer::~AIPlayer()
         delete m_sprite;
         m_sprite = nullptr;
     }
+
+    // Decrease the id.
+    --m_staticId;
 }
 
 // Difficulty 0.
@@ -54,11 +57,14 @@ AIPlayer::AIPlayer(sf::RenderWindow* window, uint8_t difficulty)
     // Set position
     m_sprite->setPosition(100, 100);
 
-
+    // Set the playing function.
     if(difficulty == 0)
     {
         pfunc = &AIPlayer::difficulty0;
     }
+
+    // Increase the id
+    m_playerId = m_staticId++;
 }
 
 // Select wich position are we going to place the Token.

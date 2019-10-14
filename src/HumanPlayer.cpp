@@ -1,63 +1,29 @@
 #include <SFML/Graphics.hpp>
 #include <HumanPlayer.h>
+#include <KeyToMethod.h>
 
 #define df_selectorPath "./res/selector"
 
 // Init idsx
 uint8_t HumanPlayer::m_id = 1;
+uint8_t Player::m_staticId = 1;
 
-struct KeyToMethod
+
+// Board key to method.
+KeyToMethod board_ktom[] =
 {
-    sf::Keyboard::Key m_key;
-    void (*pfunc)(uint8_t&);
-};
+    { sf::Keyboard::W      , board_moveUp    },
+    { sf::Keyboard::A      , board_moveLeft  },
+    { sf::Keyboard::S      , board_moveDown  },
+    { sf::Keyboard::D      , board_moveRight },
 
-KeyToMethod ktom[] =
-{
-    { sf::Keyboard::W      , moveUp    },
-    { sf::Keyboard::A      , moveLeft  },
-    { sf::Keyboard::S      , moveDown  },
-    { sf::Keyboard::D      , moveRight },
-
-    { sf::Keyboard::Up     , moveUp    },
-    { sf::Keyboard::Left   , moveLeft  },
-    { sf::Keyboard::Down   , moveDown  },
-    { sf::Keyboard::Right  , moveRight },
+    { sf::Keyboard::Up     , board_moveUp    },
+    { sf::Keyboard::Left   , board_moveLeft  },
+    { sf::Keyboard::Down   , board_moveDown  },
+    { sf::Keyboard::Right  , board_moveRight },
     { sf::Keyboard::Unknown, 0}
 };
 
-// Move up.
-void moveUp(uint8_t& pos)
-{
-    if(pos != 0 && pos != 1 && pos != 2)
-        pos -= 3;
-}
-
-// Move left.
-void moveLeft(uint8_t& pos)
-{
-    if(pos != 0 && pos != 3 && pos != 6)
-        --pos;
-}
-
-// Move right.
-void moveRight(uint8_t& pos)
-{
-    if(pos != 2 && pos != 5 && pos != 8)
-        ++pos;
-}
-
-// Move down.
-void moveDown(uint8_t& pos)
-{
-    if(pos != 6 && pos != 7 && pos != 8)
-        pos += 3;
-}
-
-void waitUntilRelease(sf::Keyboard::Key k)
-{
-    while(sf::Keyboard::isKeyPressed(k));
-}
 
 // Is valid
 bool HumanPlayer::isValid(uint8_t pos, const uint8_t board[9])
@@ -95,7 +61,10 @@ HumanPlayer::HumanPlayer(sf::RenderWindow* window):
     m_sprite->setPosition(m_pos[m_position%3], m_pos[m_position/3]);
     
     // Set the keyboard manager.
-    m_keyboard = ktom;
+    m_keyboard = board_ktom;
+
+    // Increase the id
+    m_playerId = m_staticId++;
 
     // Just in case.
     waitUntilRelease(sf::Keyboard::Return);
@@ -127,6 +96,9 @@ HumanPlayer::~HumanPlayer()
         delete m_keyboard;
         m_keyboard = nullptr;
     }
+
+    // Decrease the id.
+    --m_staticId;
 }
 
 // Select wich position are we going to place the Token.
@@ -138,14 +110,14 @@ uint8_t HumanPlayer::selectBox(const uint8_t board[9])
         // If any is pressed.
         if(sf::Keyboard::isKeyPressed(m_keyboard->m_key))
         {
-            m_keyboard->pfunc(m_position); // Call the function.
+            m_position = m_keyboard->pfunc(m_position); // Call the function.
             waitUntilRelease(m_keyboard->m_key);
         }
         ++m_keyboard;
     }
 
     m_sprite->setPosition(m_pos[m_position%3], m_pos[m_position/3]);
-    m_keyboard = ktom; // Set keyboard to init.
+    m_keyboard = board_ktom; // Set keyboard to init.
 
     if(isValid(m_position, board))
         return m_position;

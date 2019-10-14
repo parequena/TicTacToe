@@ -3,6 +3,7 @@
 
 // Forward delcarations.
 class Board;
+class Menu;
 namespace sf { class RenderWindow; }
 
 class Game
@@ -10,8 +11,8 @@ class Game
     // Window.
     sf::RenderWindow* m_window;
 
-    // Main menu.
-    // MainMenu* m_mainMenu;
+    // Menu.
+    Menu* m_menu;
 
     // Playing board.
     Board* m_board;
