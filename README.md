@@ -19,8 +19,7 @@ I've never done some pointer to functions or method, so I made them is some feat
         - S / Down Arrow : Move down the selector.
         - D / Right Arrow: Move right the selector.
         - Here is the keybinding:
-        `
-            // All the move* are functions present on the code.
+        `// All the move* are functions present on the code.
             KeyToMethod ktom[] =
             {
                 { sf::Keyboard::W      , moveUp    },
@@ -33,8 +32,7 @@ I've never done some pointer to functions or method, so I made them is some feat
                 { sf::Keyboard::Down   , moveDown  },
                 { sf::Keyboard::Right  , moveRight },
                 { sf::Keyboard::Unknown, 0}
-            };
-        `
+            };`
 
 ## File Structure
 
