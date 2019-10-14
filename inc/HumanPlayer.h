@@ -19,10 +19,10 @@ public:
     HumanPlayer(sf::RenderWindow* window);
 
     // Select wich position are we going to place the Token.
-    uint8_t selectBox() const override;
+    uint8_t selectBox(const uint8_t board[9]) const override;
 
     // Draw
-    void draw();
+    void draw() override;
 };
 
 #endif

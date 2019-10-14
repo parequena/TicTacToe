@@ -10,10 +10,10 @@ public:
     virtual ~Player() = default;
 
     // Select wich position are we going to place the Token.
-    virtual uint8_t selectBox() const = 0;
+    virtual uint8_t selectBox(const uint8_t board[9]) const = 0;
 
-    // // Draw.
-    // virtual void draw() = 0;
+    // Draw
+    virtual void draw() = 0;
 };
 
 #endif

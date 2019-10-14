@@ -15,14 +15,6 @@ bool Board::gameEnded() const
     return false;
 }
 
-#include <iostream>
-
-// Is valid
-bool Board::isValid(uint8_t position) const
-{
-    return position < 9 && m_board[position] == 0;
-}
-
 // Check winner.
 bool Board::checkWinner() const
 {
@@ -108,8 +100,6 @@ Board::~Board()
     }
 }
 
-#include <iostream>
-
 //////////////////////////////////////////////////////////////////
 ///////////////////////////// PUBLIC /////////////////////////////
 //////////////////////////////////////////////////////////////////
@@ -146,13 +136,13 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
     // Load players.
     if(nplayers == 0)
     {
-        m_players[0] = new AIPlayer(difficulty);
-        m_players[1] = new AIPlayer(difficulty);
+        m_players[0] = new AIPlayer(m_window, difficulty);
+        m_players[1] = new AIPlayer(m_window, difficulty);
     }
     else if(nplayers == 1)
     {
         m_players[0] = new HumanPlayer(m_window);
-        m_players[1] = new AIPlayer(difficulty);
+        m_players[1] = new AIPlayer(m_window, difficulty);
     }
     else
     {
@@ -160,7 +150,11 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
         m_players[1] = new HumanPlayer(m_window);
     }
     
+    // Just in case.
+    while(sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
 };
+
+#include <iostream>
 
 // Play.
 uint8_t Board::play()
@@ -173,8 +167,20 @@ uint8_t Board::play()
     {
         do
         {
-            selected = m_players[m_firstPlayer]->selectBox();
-        } while(!isValid(selected));
+            // Get the position.
+            selected = m_players[m_firstPlayer]->selectBox(m_board);
+
+            // Draw the board.
+            draw();
+
+            // Exit condition
+            if(selected < 10 && sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+            {
+                while(sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
+                break;
+            }
+
+        } while(true);
 
         // Set the selected to the current player.
         m_board[selected] = static_cast<uint8_t>(m_firstPlayer) + 1;
@@ -199,13 +205,20 @@ uint8_t Board::play()
 // Draw.
 void Board::draw()
 {
+    // Clear the screen
+    m_window->clear(sf::Color::White);
+
+    // Draw the board.
     for(auto s : m_sprites)
         m_window->draw(*s);
 
+    // Draw the tokens.
     for(auto i = 0; i < m_currToken; ++i)
         m_tokens[i]->draw();
 
-    // m_players[m_firstPlayer]->draw();
+    // Draw the player
+    m_players[m_firstPlayer]->draw();
 
+    // Display the window.
     m_window->display();
 }

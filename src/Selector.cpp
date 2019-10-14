@@ -54,11 +54,18 @@ void waitUntilRelease(sf::Keyboard::Key k)
     while(sf::Keyboard::isKeyPressed(k));
 }
 
+// Is valid
+bool Selector::isValid(uint8_t pos, const uint8_t board[9])
+{
+    return pos < 9 && board[pos] == 0;
+}
+
 //////////////////////////////////////////////////////////////////
 ///////////////////////////// PUBLIC /////////////////////////////
 //////////////////////////////////////////////////////////////////
 // Ctor.
 Selector::Selector(sf::RenderWindow* window):
+    m_selecting(false),
     m_pos{58, 186, 314},
     m_position(5),
     m_window(nullptr),
@@ -77,6 +84,13 @@ Selector::Selector(sf::RenderWindow* window):
 
     // Load sprite.
     m_sprite = new sf::Sprite(*m_texture);
+
+    // Set position
+    m_position = 4;
+    m_sprite->setPosition(m_pos[m_position%3], m_pos[m_position/3]);
+    
+    // Set the keyboard manager.
+    m_keyboard = ktom;
 
     // Just in case.
     waitUntilRelease(sf::Keyboard::Return);
@@ -111,38 +125,30 @@ Selector::~Selector()
 }
 
 // Select wich position are we going to place the Token.
-uint8_t Selector::selectBox()
+uint8_t Selector::selectBox(const uint8_t board[9])
 {
-    m_position = 4;
-    m_keyboard = ktom;
-    
-    do
+    // Loop into the keys.
+    while(m_keyboard->m_key != sf::Keyboard::Unknown)
     {
-        while(m_keyboard->m_key != sf::Keyboard::Unknown)
+        // If any is pressed.
+        if(sf::Keyboard::isKeyPressed(m_keyboard->m_key))
         {
-            if(sf::Keyboard::isKeyPressed(m_keyboard->m_key))
-            {
-                m_keyboard->pfunc(m_position);
-                waitUntilRelease(m_keyboard->m_key);
-            }
-            ++m_keyboard;
+            m_keyboard->pfunc(m_position); // Call the function.
+            waitUntilRelease(m_keyboard->m_key);
         }
+        ++m_keyboard;
+    }
 
-        m_sprite->setPosition(m_pos[m_position%3], m_pos[m_position/3]);
-        draw();
-        m_keyboard = ktom; // Set keyboard to init.
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-            break;
-    } while(true);
-    waitUntilRelease(sf::Keyboard::Return);
+    m_sprite->setPosition(m_pos[m_position%3], m_pos[m_position/3]);
+    m_keyboard = ktom; // Set keyboard to init.
 
-    return m_position;
+    if(isValid(m_position, board))
+        return m_position;
+    else return 10;
 }
 
-#include <iostream>
 // Draw.
 void Selector::draw()
 {
     m_window->draw(*m_sprite);
-    m_window->display(); 
 }

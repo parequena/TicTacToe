@@ -24,9 +24,9 @@ HumanPlayer::HumanPlayer(sf::RenderWindow* window):
 }
 
 // Select wich position are we going to place the Token.
-uint8_t HumanPlayer::selectBox() const
+uint8_t HumanPlayer::selectBox(const uint8_t board[9]) const
 {
-    return m_selector->selectBox();
+    return m_selector->selectBox(board);
 }
 
 // Draw

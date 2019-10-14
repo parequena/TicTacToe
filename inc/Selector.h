@@ -18,6 +18,9 @@ void moveDown(uint8_t& pos);
 
 class Selector
 {
+    // Selecting or not
+    bool m_selecting;
+
     // Vertor of positions.
     const int m_pos[3];
 
@@ -39,6 +42,9 @@ class Selector
     // Keyboad
     KeyToMethod* m_keyboard;
 
+    // Check if is valid.
+    static bool isValid(uint8_t pos, const uint8_t board[9]);
+
 public:
     // Ctor.
     Selector(sf::RenderWindow* window);
@@ -47,7 +53,7 @@ public:
     ~Selector();
 
     // Select wich position are we going to place the Token.
-    uint8_t selectBox();
+    uint8_t selectBox(const uint8_t board[9]);
 
     // Draw.
     void draw();
