@@ -2,7 +2,7 @@
 
 This TicTacToe developped by Pablo Requena González using SFML 2.5.2 on Manajro (Arch Linux).
 
-> [Twitter](https://twitter.com/conPdePABLO)
+[Twitter](https://twitter.com/conPdePABLO)
 [LinkedIn](https://www.linkedin.com/in/pablo-requena-gonz%C3%A1lez-387366146/)
 [GitHub](https://github.com/parequena)
 
@@ -10,8 +10,8 @@ This TicTacToe developped by Pablo Requena González using SFML 2.5.2 on Manajro
 
 ## File Structure
 
- - **.vscode:** VSCode files.
- - **inc:** Header files used on the game.
+- **.vscode:** VSCode files.
+- **inc:** Header files used on the game.
 - **src:** Source files used on the game.
 - **res:** Resource folder, this folder has all images used on the game.
 - **main.cpp:**  Main of the game.
@@ -27,4 +27,4 @@ Thanks to make, we can compile the code using a terminal.
  6. Play the game.
 
 ## Some Images
-
+![Board and Human Selector (Green because its first player)](https://github.com/parequena/TicTacToe/blob/master/githubResource/human_choose.png)
