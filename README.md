@@ -8,6 +8,34 @@ This TicTacToe developped by Pablo Requena González using SFML 2.5.2 on Manajro
 
 ## Features
 
+- Pointers to function or method
+I've never done some pointer to functions or method, so I made them is some features in the game.
+    - AI difficulty:
+        - Level 0: Random selector.
+        - ~~Level 1: TODO~~
+    - Keyboard selection:
+        - W / Up Arrow   : Move up the selector.
+        - A / Left Arrow : Move left the selector.
+        - S / Down Arrow : Move down the selector.
+        - D / Right Arrow: Move right the selector.
+        - Here is the keybinding:
+        `
+            // All the move* are functions present on the code.
+            KeyToMethod ktom[] =
+            {
+                { sf::Keyboard::W      , moveUp    },
+                { sf::Keyboard::A      , moveLeft  },
+                { sf::Keyboard::S      , moveDown  },
+                { sf::Keyboard::D      , moveRight },
+
+                { sf::Keyboard::Up     , moveUp    },
+                { sf::Keyboard::Left   , moveLeft  },
+                { sf::Keyboard::Down   , moveDown  },
+                { sf::Keyboard::Right  , moveRight },
+                { sf::Keyboard::Unknown, 0}
+            };
+        `
+
 ## File Structure
 
 - **.vscode:** VSCode files.
@@ -15,7 +43,7 @@ This TicTacToe developped by Pablo Requena González using SFML 2.5.2 on Manajro
 - **src:** Source files used on the game.
 - **res:** Resource folder, this folder has all images used on the game.
 - **main.cpp:**  Main of the game.
--  **Makefile:**  Compilation file.
+- **Makefile:**  Compilation file.
  
 ## Installation and compilation
 Thanks to make, we can compile the code using a terminal.
@@ -27,4 +55,13 @@ Thanks to make, we can compile the code using a terminal.
  6. Play the game.
 
 ## Some Images
+- Board and human selector
 ![Board and Human Selector (Green because its first player)](https://github.com/parequena/TicTacToe/blob/master/githubResource/human_choose.png)
+
+
+- Green selector
+![Selector for player 1 (Human)](https://github.com/parequena/TicTacToe/blob/master/res/selector1.png)
+- Purple selector
+![Selector for player 2 (Human)](https://github.com/parequena/TicTacToe/blob/master/res/selector2.png)
+- AI Splash
+![AI Splash](https://github.com/parequena/TicTacToe/blob/master/res/ai.png)
