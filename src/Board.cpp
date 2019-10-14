@@ -1,4 +1,6 @@
 #include <SFML/Graphics.hpp>
+#include <ctime>
+#include <cstdlib>
 
 #include <Board.h>
 #include <AIPlayer.h>
@@ -113,6 +115,10 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
     m_players{nullptr, nullptr},
     m_tokens{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}
 {
+    // Set the first player.
+    srand(time(NULL));
+    m_firstPlayer = static_cast<bool>(rand() % 2);
+
     // Set the window
     if (!window)
         throw std::logic_error("Null SFML Window received (Board).");
@@ -164,6 +170,7 @@ uint8_t Board::play()
 
     do
     {
+        bool d;
         do
         {
             // Get the position.
@@ -172,17 +179,11 @@ uint8_t Board::play()
             // Draw the board.
             draw();
 
-            // Exit condition
-            if(selected < 10 && sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-            {
-                while(sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
-                break;
-            }
-
-        } while(true);
+        } while(selected >= 10 || !sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
+        while(sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
 
         // Set the selected to the current player.
-        m_board[selected] = static_cast<uint8_t>(m_firstPlayer) + 1;
+        m_board[selected] = m_players[m_firstPlayer]->getId();
 
         // Create the token.
         m_tokens[m_currToken++] = new Token(m_window, selected, static_cast<TokenType>(m_firstPlayer));

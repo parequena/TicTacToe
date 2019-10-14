@@ -5,6 +5,14 @@
 
 class Player
 {
+protected:
+
+    // Static Id.
+    static uint8_t m_staticId;
+
+    // Player id.
+    uint8_t m_playerId;
+
 public:
     // Dtor.
     virtual ~Player() = default;
@@ -14,6 +22,9 @@ public:
 
     // Draw
     virtual void draw() = 0;
+
+    // Get the id.
+    inline uint8_t getId() { return m_playerId; }
 };
 
 #endif

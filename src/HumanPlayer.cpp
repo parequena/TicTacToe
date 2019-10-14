@@ -5,6 +5,7 @@
 
 // Init idsx
 uint8_t HumanPlayer::m_id = 1;
+uint8_t Player::m_staticId = 1;
 
 struct KeyToMethod
 {
@@ -97,6 +98,9 @@ HumanPlayer::HumanPlayer(sf::RenderWindow* window):
     // Set the keyboard manager.
     m_keyboard = ktom;
 
+    // Increase the id
+    m_playerId = m_staticId++;
+
     // Just in case.
     waitUntilRelease(sf::Keyboard::Return);
 }
@@ -127,6 +131,9 @@ HumanPlayer::~HumanPlayer()
         delete m_keyboard;
         m_keyboard = nullptr;
     }
+
+    // Decrease the id.
+    --m_staticId;
 }
 
 // Select wich position are we going to place the Token.
