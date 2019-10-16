@@ -20,7 +20,7 @@ Menu::Menu(sf::RenderWindow* window):
     m_window(nullptr),
     m_font(nullptr),
     m_title(nullptr),
-    m_texts{nullptr, nullptr, nullptr, nullptr},
+    m_texts{nullptr, nullptr, nullptr, nullptr, nullptr},
     m_selection(nullptr),
     m_position(0)
 {
@@ -43,13 +43,15 @@ Menu::Menu(sf::RenderWindow* window):
     // Load the texts
     m_texts[0] = new sf::Text("Play", *m_font, 30);
     m_texts[1] = new sf::Text("N. Players: " + std::to_string(m_selection->m_nPlayers), *m_font, 30);
-    m_texts[2] = new sf::Text("AI Level  : " + std::to_string(m_selection->m_AILevel), *m_font, 30);
-    m_texts[3] = new sf::Text("Exit", *m_font, 30);
+    m_texts[2] = new sf::Text("AI Level: " + std::to_string(m_selection->m_AILevel), *m_font, 30);
+    m_texts[3] = new sf::Text("About", *m_font, 30);
+    m_texts[4] = new sf::Text("Exit", *m_font, 30);
 
-    m_texts[0]->setPosition(270, 300);
-    m_texts[1]->setPosition(270, 350);
-    m_texts[2]->setPosition(270, 400);
-    m_texts[3]->setPosition(270, 450);
+    m_texts[0]->setPosition(270, 250);
+    m_texts[1]->setPosition(270, 300);
+    m_texts[2]->setPosition(270, 350);
+    m_texts[3]->setPosition(270, 400);
+    m_texts[4]->setPosition(270, 450);
 
     for(auto t : m_texts)
         t->setFillColor(sf::Color::Black);
@@ -95,7 +97,8 @@ MenuSelect* Menu::select()
     (0) Play
     (1) Human Players
     (2) AI Level
-    (3) Exit
+    (3) About
+    (4) Exit
     */
     KeyToMethod *kb = menu_ktom, *kb2 = menu_ktom2;
     uint8_t pos = 0;
@@ -156,7 +159,7 @@ MenuSelect* Menu::select()
         draw();
         kb = menu_ktom;
 
-    } while ((m_position != 0 || m_position != 3) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
+    } while ((m_position != 0 || m_position != df_maxMenuOpt) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
     waitUntilRelease(sf::Keyboard::Return);
 
     // Set if we want to play, or not.

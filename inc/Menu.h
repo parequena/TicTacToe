@@ -36,7 +36,7 @@ class Menu
     sf::Text* m_title;
 
     // Text.
-    sf::Text* m_texts[4];
+    sf::Text* m_texts[5];
 
     // Menu Selection.
     MenuSelect* m_selection;

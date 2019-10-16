@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#define df_maxMenuOpt 4
+
 // Wait for the key release.
 void waitUntilRelease(sf::Keyboard::Key k);
 
