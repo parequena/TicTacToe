@@ -50,7 +50,14 @@ Game::~Game()
 void Game::play()
 {
     MenuSelect* s = m_menu->select();
-    if(!s->m_play) return;
+    if(!s->m_play)
+    {
+        std::cout << "Exit\n";
+        return;
+    }
+
+    // Play the game.
+    m_board = new Board(m_window, s->m_nPlayers, s->m_AILevel);
 
     int winner = static_cast<int>(m_board->play());
     std::cout << "Player: " << winner << " won the game.\n";

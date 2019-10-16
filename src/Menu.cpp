@@ -31,10 +31,11 @@ Menu::Menu(sf::RenderWindow* window):
 
     // Load the font.
     m_font = new sf::Font();
-    m_font->loadFromFile("arial.tff");
+    m_font->loadFromFile("./res/LemonMilk.otf");
 
     // Set the Title.
-    m_title = new sf::Text("TicTacToe", *m_font, 50);
+    m_title = new sf::Text("Tic\n\tTac\n\t\tToe", *m_font, 50);
+    m_title->setFillColor(sf::Color::Black);
 
     // Load the selection
     m_selection = new MenuSelect();
@@ -45,10 +46,13 @@ Menu::Menu(sf::RenderWindow* window):
     m_texts[2] = new sf::Text("AI Level  : " + std::to_string(m_selection->m_AILevel), *m_font, 30);
     m_texts[3] = new sf::Text("Exit", *m_font, 30);
 
-    m_texts[0]->setPosition(0, 100);
-    m_texts[1]->setPosition(0, 200);
-    m_texts[2]->setPosition(0, 300);
-    m_texts[3]->setPosition(0, 400);
+    m_texts[0]->setPosition(270, 300);
+    m_texts[1]->setPosition(270, 350);
+    m_texts[2]->setPosition(270, 400);
+    m_texts[3]->setPosition(270, 450);
+
+    for(auto t : m_texts)
+        t->setFillColor(sf::Color::Black);
 
     // Set to Blue.
     m_texts[m_position]->setFillColor(sf::Color::Blue);
@@ -71,6 +75,19 @@ KeyToMethod menu_ktom[] =
     { sf::Keyboard::Unknown, 0}
 };
 
+// Board key to method.
+KeyToMethod menu_ktom2[] =
+{
+    { sf::Keyboard::A      , menu_moveUp    },
+    { sf::Keyboard::D      , menu_moveDown  },
+
+    { sf::Keyboard::Left   , menu_moveUp    },
+    { sf::Keyboard::Right  , menu_moveDown  },
+    { sf::Keyboard::Unknown, 0}
+};
+
+#include <iostream>
+
 // Select
 MenuSelect* Menu::select()
 {
@@ -80,7 +97,7 @@ MenuSelect* Menu::select()
     (2) AI Level
     (3) Exit
     */
-    KeyToMethod* kb = menu_ktom;
+    KeyToMethod *kb = menu_ktom, *kb2 = menu_ktom2;
     uint8_t pos = 0;
 
     do
@@ -98,6 +115,41 @@ MenuSelect* Menu::select()
                 waitUntilRelease(kb->m_key);
             }
             ++kb;
+        }
+
+        if(m_position == 1)
+        {
+            kb2 = menu_ktom2;
+
+            while(kb2->m_key != sf::Keyboard::Unknown)
+            {
+                // If any is pressed.
+                if(sf::Keyboard::isKeyPressed(kb2->m_key))
+                {
+                    m_selection->m_nPlayers = kb2->pfunc(m_selection->m_nPlayers); // Call the function.
+                    if(m_selection->m_nPlayers >= 2) m_selection->m_nPlayers = 2;
+                    waitUntilRelease(kb2->m_key);
+                    m_texts[1]->setString("N. Players: " + std::to_string(m_selection->m_nPlayers));
+                }
+                ++kb2;
+            }
+        }
+        else if(m_position == 2)
+        {
+            kb2 = menu_ktom2;
+
+            while(kb2->m_key != sf::Keyboard::Unknown)
+            {
+                // If any is pressed.
+                if(sf::Keyboard::isKeyPressed(kb2->m_key))
+                {
+                    m_selection->m_AILevel = kb2->pfunc(m_selection->m_AILevel); // Call the function.
+                    if(m_selection->m_AILevel >= 1) m_selection->m_AILevel = 1;
+                    waitUntilRelease(kb2->m_key);
+                    m_texts[2]->setString("AI Level  : " + std::to_string(m_selection->m_AILevel));
+                }
+                ++kb2;
+            }
         }
 
         // Set to beggining.

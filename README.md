@@ -57,20 +57,23 @@ Thanks to make, we can compile the code using a terminal.
  6. Play the game.
 
 ## Some Images
-- Board and human selector
+<p align="center">
+**Board and human selector**
 ![Board and Human Selector (Green because its first player)](https://github.com/parequena/TicTacToe/blob/master/githubResource/human_choose.png)
 
 
-- Green selector
-
+****Green selector**
 ![Selector for player 1 (Human)](https://github.com/parequena/TicTacToe/blob/master/res/selector1.png)
 
 
-- Purple selector
-
+**Purple selector**
 ![Selector for player 2 (Human)](https://github.com/parequena/TicTacToe/blob/master/res/selector2.png)
 
 
-- AI Splash
-
+**AI Splash**
 ![AI Splash](https://github.com/parequena/TicTacToe/blob/master/res/ai.png)
+</p>
+
+# Resources
+- **Robot image:** https://emojiisland.com/products/robot-iphone-emoji-jpg
+- **Font:** https://www.dafont.com/es/lemon-milk.font
