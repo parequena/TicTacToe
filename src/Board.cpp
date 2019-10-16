@@ -6,6 +6,7 @@
 #include <AIPlayer.h>
 #include <HumanPlayer.h>
 #include <Token.h>
+#include <KeyToMethod.h>
 
 #define df_boardPath "./res/box.png"
 
@@ -156,7 +157,7 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
     }
     
     // Just in case.
-    while(sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
+    waitUntilRelease(sf::Keyboard::Return);
 };
 
 #include <iostream>
@@ -180,13 +181,13 @@ uint8_t Board::play()
             draw();
 
         } while(selected >= 10 || !sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
-        while(sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
+        waitUntilRelease(sf::Keyboard::Return);
 
         // Set the selected to the current player.
         m_board[selected] = m_players[m_firstPlayer]->getId();
 
         // Create the token.
-        m_tokens[m_currToken++] = new Token(m_window, selected, static_cast<TokenType>(m_firstPlayer));
+        m_tokens[m_currToken++] = new Token(m_window, selected, static_cast<TokenType>(m_players[m_firstPlayer]->getId() - 1));
 
         // Draw the board.
         draw();
