@@ -41,6 +41,7 @@ I've never done some pointer to functions or method, so I made them is some feat
 ## File Structure
 
 - **.vscode:** VSCode files.
+- **githubResource:** This is a folder with some images to this README.
 - **inc:** Header files used on the game.
 - **src:** Source files used on the game.
 - **res:** Resource folder, this folder has all images used on the game.
@@ -57,8 +58,9 @@ Thanks to make, we can compile the code using a terminal.
  6. Play the game.
 
 ## Some Images
-<p align="center">
-**Board and human selector**
+<p align="center"><strong>Menu</strong></p>
+<p align="center"><img width="496" height="523" src="https://github.com/parequena/TicTacToe/blob/master/githubResource/menu.png"></p>
+<p align="center"><strong>Board and human selector</strong></p>
 ![Board and Human Selector (Green because its first player)](https://github.com/parequena/TicTacToe/blob/master/githubResource/human_choose.png)
 
 
