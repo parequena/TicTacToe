@@ -59,22 +59,20 @@ Thanks to make, we can compile the code using a terminal.
 
 ## Some Images
 <p align="center"><strong>Menu</strong></p>
-<p align="center"><img width="496" height="523" src="https://github.com/parequena/TicTacToe/blob/master/githubResource/menu.png"></p>
-<p align="center"><strong>Board and human selector</strong></p>
-![Board and Human Selector (Green because its first player)](https://github.com/parequena/TicTacToe/blob/master/githubResource/human_choose.png)
+<p align="center"><img width="248" height="261" src="https://github.com/parequena/TicTacToe/blob/master/githubResource/menu.png"></p>
 
+<p align="center"><strong>Board, both Tokens and Human Selector</strong></p>
+<p align="center"><img width="249" height="263" src="https://github.com/parequena/TicTacToe/blob/master/githubResource/both_tokens.png"></p>
 
-****Green selector**
-![Selector for player 1 (Human)](https://github.com/parequena/TicTacToe/blob/master/res/selector1.png)
-
-
-**Purple selector**
-![Selector for player 2 (Human)](https://github.com/parequena/TicTacToe/blob/master/res/selector2.png)
-
-
-**AI Splash**
-![AI Splash](https://github.com/parequena/TicTacToe/blob/master/res/ai.png)
+<p align="center"><strong>Board, both Tokens and Human Selector</strong></p>
+<p align="center">
+<img width="128" height="128" src="https://github.com/parequena/TicTacToe/blob/master/res/selector1.png">
+<img width="128" height="128" src="https://github.com/parequena/TicTacToe/blob/master/res/selector2.png">
 </p>
+
+<p align="center"><strong>AI Selector</strong></p>
+<p align="center"><img width="300" height="300" src="https://github.com/parequena/TicTacToe/blob/master/githubResource/ai_choose.png"></p>
+
 
 # Resources
 - **Robot image:** https://emojiisland.com/products/robot-iphone-emoji-jpg
