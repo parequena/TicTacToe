@@ -1,3 +1,10 @@
+/*
+    Project: TicTacToe
+    Author : Pablo Requena (Twitter: @conPdePABLO)
+    GitHub : https://github.com/parequena/TicTacToe/
+    Date   : October 2019
+*/
+
 #ifndef __BOARD_H__
 #define __BOARD_H__
 
