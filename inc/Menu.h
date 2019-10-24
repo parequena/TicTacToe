@@ -1,3 +1,10 @@
+/*
+    Project: TicTacToe
+    Author : Pablo Requena (Twitter: @conPdePABLO)
+    GitHub : https://github.com/parequena/TicTacToe/
+    Date   : October 2019
+*/
+
 #ifndef __MENU_H_
 #define __MENU_H_
 

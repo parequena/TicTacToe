@@ -1,3 +1,10 @@
+/*
+    Project: TicTacToe
+    Author : Pablo Requena (Twitter: @conPdePABLO)
+    GitHub : https://github.com/parequena/TicTacToe/
+    Date   : October 2019
+*/
+
 #ifndef __KEYTOMETHOD_H__
 #define __KEYTOMETHOD_H__
 
