@@ -165,8 +165,7 @@ MenuSelect* Menu::select()
         // Set to beggining.
         draw();
         kb = menu_ktom;
-
-    } while ((m_position != 0 || m_position != df_maxMenuOpt) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
+    } while ((m_position == 0 || m_position == df_maxMenuOpt) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
     waitUntilRelease(sf::Keyboard::Return);
 
     // Set if we want to play, or not.
