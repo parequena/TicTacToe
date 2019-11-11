@@ -100,12 +100,13 @@ HumanPlayer::~HumanPlayer()
 
     if(m_keyboard)
     {
-        delete m_keyboard;
+        // delete m_keyboard; // We are not doing a new!
         m_keyboard = nullptr;
     }
 
     // Decrease the id.
     --m_staticId;
+    --m_id;
 }
 
 // Select wich position are we going to place the Token.

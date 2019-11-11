@@ -27,6 +27,7 @@ bool Board::gameEnded() const
 // Check winner.
 bool Board::checkWinner() const
 {
+    // REVISAR 
     return (m_board[0] != 0
             && (m_board[0] == m_board[1] && m_board[0] == m_board[2]                    /* 0-1-2 */
             ||  m_board[0] == m_board[3] && m_board[0] == m_board[6]                    /* 0-3-6 */

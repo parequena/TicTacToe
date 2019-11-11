@@ -50,12 +50,12 @@ class Board
     // Get the winner.
     uint8_t getWinner() const;
 
-    // Dtor.
-    ~Board();
-
 public:
     // Ctor.
     Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty);
+
+    // Dtor.
+    ~Board();
 
     // Play.
     uint8_t play();
