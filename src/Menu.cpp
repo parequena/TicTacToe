@@ -10,7 +10,7 @@
 #include <KeyToMethod.h>
 
 // Draw
-void Menu::draw() const
+void Menu::draw() const 
 {
     m_window->clear(sf::Color::White);
     m_window->draw(*m_title);
@@ -68,9 +68,9 @@ Menu::Menu(sf::RenderWindow* window):
 }
 
 // Dtor.
-Menu::~Menu()
+Menu::~Menu() noexcept
 {
-
+    // TODO
 }
 
 // Board key to method.
@@ -98,7 +98,7 @@ KeyToMethod menu_ktom2[] =
 #include <iostream>
 
 // Select
-MenuSelect* Menu::select()
+MenuSelect* Menu::select() 
 {
     /*
     (0) Play
@@ -166,7 +166,9 @@ MenuSelect* Menu::select()
         draw();
         kb = menu_ktom;
 
-    } while ((m_position != 0 || m_position != df_maxMenuOpt) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && (m_position == 0 || m_position == df_maxMenuOpt))
+            break;
+    } while(true);
     waitUntilRelease(sf::Keyboard::Return);
 
     // Set if we want to play, or not.

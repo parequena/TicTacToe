@@ -36,11 +36,11 @@ Token::Token(sf::RenderWindow* window, uint16_t boardPosition, TokenType type):
 }
 
 // Dtor.
-Token::~Token()
+Token::~Token() noexcept
 {
     if(m_window)
     {
-        delete m_window;
+        // delete m_window; // We are not doing a new!
         m_window = nullptr;
     }
 
@@ -58,7 +58,7 @@ Token::~Token()
 }
 
 // Draw.
-void Token::draw()
+void Token::draw() 
 {
     m_window->draw(*m_sprite);
 }

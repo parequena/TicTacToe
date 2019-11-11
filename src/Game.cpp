@@ -21,7 +21,7 @@
 ///////////////////////////// PUBLIC /////////////////////////////
 //////////////////////////////////////////////////////////////////
 // Ctor.
-Game::Game():
+Game::Game() :
     m_window(nullptr),
     m_menu(nullptr),
     m_board(nullptr)
@@ -43,7 +43,7 @@ Game::Game():
 }
 
 // Dtor.
-Game::~Game()
+Game::~Game() noexcept
 {
     if(m_window)
     {
@@ -54,18 +54,25 @@ Game::~Game()
 }
 
 // Play.
-void Game::play()
+void Game::play() 
 {
-    MenuSelect* s = m_menu->select();
-    if(!s->m_play)
+    while(1)
     {
-        std::cout << "Exit\n";
-        return;
+        
+        MenuSelect* s = m_menu->select();
+        if(!s->m_play)
+        {
+            std::cout << "Exit\n";
+            return;
+        }
+
+        // Play the game.
+        m_board = new Board(m_window, s->m_nPlayers, s->m_AILevel);
+
+        int winner = static_cast<int>(m_board->play());
+
+        delete m_board;
+        m_board = nullptr;
+        std::cout << "Player: " << winner << " won the game.\n";
     }
-
-    // Play the game.
-    m_board = new Board(m_window, s->m_nPlayers, s->m_AILevel);
-
-    int winner = static_cast<int>(m_board->play());
-    std::cout << "Player: " << winner << " won the game.\n";
 }

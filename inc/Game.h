@@ -29,7 +29,7 @@ public:
     Game();
 
     // Dtor.
-    ~Game();
+    ~Game() noexcept;
 
     // Play
     void play();

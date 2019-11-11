@@ -39,23 +39,17 @@ class Board
     Token* m_tokens[9];
 
     // Game end.
-    bool gameEnded() const;
+    bool gameEnded() const ;
 
     // Is valid
-    bool isValid(uint8_t position) const;
-
-    // Check winner.
-    bool checkWinner() const;
-
-    // Get the winner.
-    uint8_t getWinner() const;
-
-    // Dtor.
-    ~Board();
+    bool isValid(uint8_t position) const ;
 
 public:
     // Ctor.
     Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty);
+
+    // Dtor.
+    ~Board() noexcept;
 
     // Play.
     uint8_t play();
