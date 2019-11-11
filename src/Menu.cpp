@@ -70,7 +70,7 @@ Menu::Menu(sf::RenderWindow* window):
 // Dtor.
 Menu::~Menu()
 {
-
+    // TODO
 }
 
 // Board key to method.

@@ -40,7 +40,7 @@ Token::~Token()
 {
     if(m_window)
     {
-        delete m_window;
+        // delete m_window; // We are not doing a new!
         m_window = nullptr;
     }
 
