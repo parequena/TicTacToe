@@ -24,50 +24,6 @@ bool Board::gameEnded() const
     return false;
 }
 
-// Check winner.
-bool Board::checkWinner() const
-{
-    return (m_board[0] != 0
-            && (m_board[0] == m_board[1] && m_board[0] == m_board[2]                    /* 0-1-2 */
-            ||  m_board[0] == m_board[3] && m_board[0] == m_board[6]                    /* 0-3-6 */
-            ||  m_board[0] == m_board[4] && m_board[0] == m_board[8]))                  /* 0-4-8 */
-        || (m_board[3] != 0 && m_board[3] == m_board[4] && m_board[3] == m_board[5])    /* 3-4-5 */
-        || (m_board[6] != 0 && m_board[6] == m_board[7] && m_board[6] == m_board[8])    /* 6-7-8 */
-        || (m_board[1] != 0 && m_board[1] == m_board[4] && m_board[1] == m_board[7])    /* 1-4-7 */
-        || (m_board[2] != 0
-            && (m_board[2] == m_board[5] && m_board[2] == m_board[8]                    /* 2-5-8 */
-            ||  m_board[2] == m_board[4] && m_board[2] == m_board[6]));                 /* 2-4-6 */
-}
-
-// Get the winner.
-uint8_t Board::getWinner() const
-{
-    /*
-        0 1 2
-        3 4 5
-        6 7 8
-    */
-    // REVISAR 
-    if(m_board[0] != 0 &&
-    (m_board[0] == m_board[1] && m_board[0] == m_board[2]
-    ||  m_board[0] == m_board[3] && m_board[0] == m_board[6]
-    ||  m_board[0] == m_board[4] && m_board[0] == m_board[8]))
-        return m_board[0];
-
-    if(m_board[3] != 0 && (m_board[3] == m_board[4] && m_board[3] == m_board[5]))
-        return m_board[3];
-    if(m_board[6] != 0 && (m_board[6] == m_board[7] && m_board[6] == m_board[8]))
-        return m_board[6];
-    if(m_board[1] != 0 && (m_board[1] == m_board[4] && m_board[1] == m_board[7]))
-        return m_board[1];
-    
-    if(m_board[2] != 0 && (m_board[2] == m_board[5] && m_board[2] == m_board[8]
-    ||  m_board[2] == m_board[4] && m_board[2] == m_board[6]))
-        return m_board[2];
-
-    return 0;
-}
-
 // Dtor.
 Board::~Board()
 {
@@ -185,7 +141,6 @@ uint8_t Board::play()
 
     do
     {
-        bool d;
         do
         {
             // Get the position.
@@ -209,8 +164,8 @@ uint8_t Board::play()
         // Swap player.
         m_firstPlayer = !m_firstPlayer;
 
-        if(checkWinner())
-            return getWinner();
+        if(Player::checkWinner(m_board))
+            return Player::getWinner(m_board);
 
     } while (!gameEnded());
 

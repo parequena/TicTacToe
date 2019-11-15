@@ -169,7 +169,6 @@ MenuSelect* Menu::select()
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && (m_position == 0 || m_position == df_maxMenuOpt))
             break;
     } while(true);
-    // } while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && (m_position == 0 || m_position == df_maxMenuOpt));
     waitUntilRelease(sf::Keyboard::Return);
 
     // Set if we want to play, or not.

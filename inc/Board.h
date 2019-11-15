@@ -44,12 +44,6 @@ class Board
     // Is valid
     bool isValid(uint8_t position) const;
 
-    // Check winner.
-    bool checkWinner() const;
-
-    // Get the winner.
-    uint8_t getWinner() const;
-
 public:
     // Ctor.
     Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty);

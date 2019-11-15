@@ -32,6 +32,12 @@ public:
 
     // Get the id.
     inline uint8_t getId() { return m_playerId; }
+
+    // Check winner.
+    static bool checkWinner(const uint8_t board[9]);
+
+    // Get the winner.
+    static uint8_t getWinner(const uint8_t board[9]);
 };
 
 #endif

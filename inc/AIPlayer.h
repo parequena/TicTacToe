@@ -10,6 +10,7 @@
 
 namespace sf { class Texture; class Sprite; class RenderWindow; }
 #include <Player.h>
+#include <vector>
 
 class AIPlayer : public Player
 {
@@ -22,14 +23,23 @@ class AIPlayer : public Player
     // Sprite.
     sf::Sprite* m_sprite;
 
+    // Check first movement
+    bool m_firstMove;
+
     // Dtor.
     ~AIPlayer();
 
     // Pointer ftion to set the difficulty.
-    uint8_t (AIPlayer::*pfunc)(uint8_t) const;
+    uint8_t (AIPlayer::*pfunc)(const uint8_t*) const;
 
     // Difficulty 0.
-    uint8_t difficulty0(const uint8_t rMax) const;
+    uint8_t difficulty0(const uint8_t board[9]) const;
+
+    // Difficulty 1.
+    uint8_t difficulty1(const uint8_t board[9]) const;
+
+    // MiniMax
+    uint8_t miniMax(uint8_t board[9], bool myTurn) const;
     
 public:
     // Ctor.
