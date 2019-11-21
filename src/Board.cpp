@@ -18,14 +18,14 @@
 #define df_boardPath "./res/box.png"
 
 // Game end.
-bool Board::gameEnded() const
+bool Board::gameEnded() const noexcept
 {
     if(m_currToken == 9) return true;
     return false;
 }
 
 // Dtor.
-Board::~Board()
+Board::~Board() noexcept
 {
     // Delete the window.
     if(m_window)
@@ -133,7 +133,7 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
 #include <iostream>
 
 // Play.
-uint8_t Board::play()
+uint8_t Board::play() noexcept
 {
     uint8_t selected = 0;
     // Draw the board.
@@ -173,7 +173,7 @@ uint8_t Board::play()
 }
 
 // Draw.
-void Board::draw()
+void Board::draw() noexcept
 {
     // Clear the screen
     m_window->clear(sf::Color::White);

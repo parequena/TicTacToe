@@ -26,13 +26,13 @@ class Game
 
 public:
     // Ctor.
-    Game();
+    Game() noexcept;
 
     // Dtor.
-    ~Game();
+    ~Game() noexcept;
 
     // Play
-    void play();
+    void play() noexcept;
 };
 
 #endif

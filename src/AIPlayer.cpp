@@ -13,7 +13,7 @@
 #define df_AISprite "./res/ai.png"
 
 // Dtor.
-AIPlayer::~AIPlayer()
+AIPlayer::~AIPlayer() noexcept
 {
     if(m_window)
     {
@@ -38,7 +38,7 @@ AIPlayer::~AIPlayer()
 }
 
 // Difficulty 0.
-uint8_t AIPlayer::difficulty0(const uint8_t board[9]) const
+uint8_t AIPlayer::difficulty0(const uint8_t board[9]) const noexcept
 {
     std::vector<uint8_t> freePos;
     freePos.reserve(9);
@@ -50,7 +50,7 @@ uint8_t AIPlayer::difficulty0(const uint8_t board[9]) const
 }
 
 // Difficulty 1.
-uint8_t AIPlayer::difficulty1(const uint8_t board[9]) const
+uint8_t AIPlayer::difficulty1(const uint8_t board[9]) const noexcept
 {
     bool empty = true;
 
@@ -65,12 +65,14 @@ uint8_t AIPlayer::difficulty1(const uint8_t board[9]) const
     for(auto i = 0; i < 9; ++i)
     {
         if(board[i] != 0) continue;
-        scores[i] = miniMax(board, true);
+        // scores[i] = miniMax(board, true);
     }
+
+    return 0;
 }
 
 // MiniMax
-uint8_t AIPlayer::miniMax(uint8_t board[9], bool myTurn) const
+uint8_t AIPlayer::miniMax(uint8_t board[9], bool myTurn) const noexcept
 {
     if(checkWinner(board) && getWinner(board) == m_playerId)
         return 10;
@@ -117,13 +119,13 @@ AIPlayer::AIPlayer(sf::RenderWindow* window, uint8_t difficulty):
 }
 
 // Select wich position are we going to place the Token.
-uint8_t AIPlayer::selectBox(const uint8_t board[9])
+uint8_t AIPlayer::selectBox(const uint8_t board[9]) noexcept
 {
     return (this->*pfunc)(board);
 }
 
 // Draw
-void AIPlayer::draw()
+void AIPlayer::draw() noexcept
 {
     m_window->draw(*m_sprite);
 }

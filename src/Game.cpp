@@ -21,7 +21,7 @@
 ///////////////////////////// PUBLIC /////////////////////////////
 //////////////////////////////////////////////////////////////////
 // Ctor.
-Game::Game():
+Game::Game() noexcept:
     m_window(nullptr),
     m_menu(nullptr),
     m_board(nullptr)
@@ -43,7 +43,7 @@ Game::Game():
 }
 
 // Dtor.
-Game::~Game()
+Game::~Game() noexcept
 {
     if(m_window)
     {
@@ -54,7 +54,7 @@ Game::~Game()
 }
 
 // Play.
-void Game::play()
+void Game::play() noexcept
 {
     while(1)
     {

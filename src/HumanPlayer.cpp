@@ -33,7 +33,7 @@ KeyToMethod board_ktom[] =
 
 
 // Is valid
-bool HumanPlayer::isValid(uint8_t pos, const uint8_t board[9])
+bool HumanPlayer::isValid(uint8_t pos, const uint8_t board[9]) noexcept
 {
     return pos < 9 && board[pos] == 0;
 }
@@ -78,7 +78,7 @@ HumanPlayer::HumanPlayer(sf::RenderWindow* window):
 }
 
 // Dtor.
-HumanPlayer::~HumanPlayer()
+HumanPlayer::~HumanPlayer() noexcept
 {
     if(m_window)
     {
@@ -110,7 +110,7 @@ HumanPlayer::~HumanPlayer()
 }
 
 // Select wich position are we going to place the Token.
-uint8_t HumanPlayer::selectBox(const uint8_t board[9])
+uint8_t HumanPlayer::selectBox(const uint8_t board[9]) noexcept
 {
     // Loop into the keys.
     while(m_keyboard->m_key != sf::Keyboard::Unknown)
@@ -133,7 +133,7 @@ uint8_t HumanPlayer::selectBox(const uint8_t board[9])
 }
 
 // Draw.
-void HumanPlayer::draw()
+void HumanPlayer::draw() noexcept
 {
     m_window->draw(*m_sprite);
 }

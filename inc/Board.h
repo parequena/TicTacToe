@@ -39,23 +39,23 @@ class Board
     Token* m_tokens[9];
 
     // Game end.
-    bool gameEnded() const;
+    bool gameEnded() const noexcept;
 
     // Is valid
-    bool isValid(uint8_t position) const;
+    bool isValid(uint8_t position) const noexcept;
 
 public:
     // Ctor.
     Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty);
 
     // Dtor.
-    ~Board();
+    ~Board() noexcept;
 
     // Play.
-    uint8_t play();
+    uint8_t play() noexcept;
 
     // Draw.
-    void draw();
+    void draw() noexcept;
 
 };
 

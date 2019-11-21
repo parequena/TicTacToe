@@ -10,7 +10,7 @@
 #include <KeyToMethod.h>
 
 // Draw
-void Menu::draw() const
+void Menu::draw() const noexcept
 {
     m_window->clear(sf::Color::White);
     m_window->draw(*m_title);
@@ -68,7 +68,7 @@ Menu::Menu(sf::RenderWindow* window):
 }
 
 // Dtor.
-Menu::~Menu()
+Menu::~Menu() noexcept
 {
     // TODO
 }
@@ -98,7 +98,7 @@ KeyToMethod menu_ktom2[] =
 #include <iostream>
 
 // Select
-MenuSelect* Menu::select()
+MenuSelect* Menu::select() noexcept
 {
     /*
     (0) Play

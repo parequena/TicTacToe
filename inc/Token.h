@@ -32,10 +32,10 @@ public:
     Token(sf::RenderWindow* window, uint16_t boardPos, TokenType type);
 
     // Dtor.
-    ~Token();
+    ~Token() noexcept;
 
     // Draw.
-    void draw();
+    void draw() noexcept;
 };
 
 #endif

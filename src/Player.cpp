@@ -1,7 +1,7 @@
 #include <Player.h>
 
 // Check winner.
-bool Player::checkWinner(const uint8_t board[9])
+bool Player::checkWinner(const uint8_t board[9]) noexcept
 {
     return (board[0] != 0
             && (board[0] == board[1] && board[0] == board[2]                    /* 0-1-2 */
@@ -16,7 +16,7 @@ bool Player::checkWinner(const uint8_t board[9])
 }
 
 // Get the winner.
-uint8_t Player::getWinner(const uint8_t board[9])
+uint8_t Player::getWinner(const uint8_t board[9]) noexcept
 {
     if(board[0] != 0 &&
     (board[0] == board[1] && board[0] == board[2]
