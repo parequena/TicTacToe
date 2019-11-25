@@ -58,7 +58,7 @@ Token::~Token() noexcept
 }
 
 // Draw.
-void Token::draw() noexcept
+void Token::draw() 
 {
     m_window->draw(*m_sprite);
 }

@@ -38,7 +38,7 @@ AIPlayer::~AIPlayer() noexcept
 }
 
 // Difficulty 0.
-uint8_t AIPlayer::difficulty0(const uint8_t board[9]) const noexcept
+uint8_t AIPlayer::difficulty0(const uint8_t board[9]) const 
 {
     std::vector<uint8_t> freePos;
     freePos.reserve(9);
@@ -50,7 +50,7 @@ uint8_t AIPlayer::difficulty0(const uint8_t board[9]) const noexcept
 }
 
 // Difficulty 1.
-uint8_t AIPlayer::difficulty1(const uint8_t board[9]) const noexcept
+uint8_t AIPlayer::difficulty1(const uint8_t board[9]) const 
 {
     bool empty = true;
 
@@ -72,7 +72,7 @@ uint8_t AIPlayer::difficulty1(const uint8_t board[9]) const noexcept
 }
 
 // MiniMax
-uint8_t AIPlayer::miniMax(uint8_t board[9], bool myTurn) const noexcept
+uint8_t AIPlayer::miniMax(uint8_t board[9], bool myTurn) const 
 {
     if(checkWinner(board) && getWinner(board) == m_playerId)
         return 10;
@@ -119,13 +119,13 @@ AIPlayer::AIPlayer(sf::RenderWindow* window, uint8_t difficulty):
 }
 
 // Select wich position are we going to place the Token.
-uint8_t AIPlayer::selectBox(const uint8_t board[9]) noexcept
+uint8_t AIPlayer::selectBox(const uint8_t board[9]) 
 {
     return (this->*pfunc)(board);
 }
 
 // Draw
-void AIPlayer::draw() noexcept
+void AIPlayer::draw() 
 {
     m_window->draw(*m_sprite);
 }

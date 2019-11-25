@@ -35,7 +35,7 @@ public:
     ~Token() noexcept;
 
     // Draw.
-    void draw() noexcept;
+    void draw();
 };
 
 #endif

@@ -22,13 +22,13 @@ struct MenuSelect
     uint8_t m_AILevel = 0;
 
     // Returns max posible players.
-    static uint8_t maxPlayers() noexcept { return 2; }
+    static uint8_t maxPlayers()  { return 2; }
 
     // Returns max AI level.
-    static uint8_t maxAILevel() noexcept { return 0; }
+    static uint8_t maxAILevel()  { return 0; }
 
     // Ctor
-    MenuSelect() noexcept { m_play = true; m_nPlayers = 1; m_AILevel = 0; }
+    MenuSelect()  { m_play = true; m_nPlayers = 1; m_AILevel = 0; }
 };
 
 class Menu
@@ -52,7 +52,7 @@ class Menu
     uint8_t m_position;
 
     // Draw
-    void draw() const noexcept;
+    void draw() const ;
 
 public:
     // Ctor.
@@ -62,7 +62,7 @@ public:
     ~Menu() noexcept;
 
     // Select
-    MenuSelect* select() noexcept;
+    MenuSelect* select();
 };
 
 #endif

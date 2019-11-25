@@ -13,16 +13,16 @@ namespace sf { class Texture; class Sprite; class RenderWindow; }
 struct KeyToMethod;
 
 // Move up.
-void moveUp(uint8_t& pos) noexcept;
+void moveUp(uint8_t& pos) ;
 
 // Move left.
-void moveLeft(uint8_t& pos) noexcept;
+void moveLeft(uint8_t& pos) ;
 
 // Move right.
-void moveRight(uint8_t& pos) noexcept;
+void moveRight(uint8_t& pos) ;
 
 // Move down.
-void moveDown(uint8_t& pos) noexcept;
+void moveDown(uint8_t& pos) ;
 
 class HumanPlayer : public Player
 {
@@ -51,7 +51,7 @@ class HumanPlayer : public Player
     KeyToMethod* m_keyboard;
 
     // Check if is valid.
-    static bool isValid(uint8_t pos, const uint8_t board[9]) noexcept;
+    static bool isValid(uint8_t pos, const uint8_t board[9]) ;
 
 public:
     // Ctor.
@@ -61,10 +61,10 @@ public:
     ~HumanPlayer() noexcept;
 
     // Select wich position are we going to place the Token.
-    uint8_t selectBox(const uint8_t board[9]) noexcept;
+    uint8_t selectBox(const uint8_t board[9]) ;
 
     // Draw.
-    void draw() noexcept;
+    void draw();
 };
 
 #endif

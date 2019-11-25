@@ -39,10 +39,10 @@ class Board
     Token* m_tokens[9];
 
     // Game end.
-    bool gameEnded() const noexcept;
+    bool gameEnded() const ;
 
     // Is valid
-    bool isValid(uint8_t position) const noexcept;
+    bool isValid(uint8_t position) const ;
 
 public:
     // Ctor.
@@ -52,10 +52,10 @@ public:
     ~Board() noexcept;
 
     // Play.
-    uint8_t play() noexcept;
+    uint8_t play();
 
     // Draw.
-    void draw() noexcept;
+    void draw();
 
 };
 

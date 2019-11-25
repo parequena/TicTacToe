@@ -30,26 +30,26 @@ class AIPlayer : public Player
     ~AIPlayer();
 
     // Pointer ftion to set the difficulty.
-    uint8_t (AIPlayer::*pfunc)(const uint8_t*) const noexcept;
+    uint8_t (AIPlayer::*pfunc)(const uint8_t*) const ;
 
     // Difficulty 0.
-    uint8_t difficulty0(const uint8_t board[9]) const noexcept;
+    uint8_t difficulty0(const uint8_t board[9]) const ;
 
     // Difficulty 1.
-    uint8_t difficulty1(const uint8_t board[9]) const noexcept;
+    uint8_t difficulty1(const uint8_t board[9]) const ;
 
     // MiniMax
-    uint8_t miniMax(uint8_t board[9], bool myTurn) const noexcept;
+    uint8_t miniMax(uint8_t board[9], bool myTurn) const ;
     
 public:
     // Ctor.
     AIPlayer(sf::RenderWindow* window, uint8_t difficulty);
 
     // Select wich position are we going to place the Token.
-    uint8_t selectBox(const uint8_t board[9]) noexcept override;
+    uint8_t selectBox(const uint8_t board[9])  override;
 
     // Draw
-    void draw() noexcept override;
+    void draw()  override;
 };
 
 #endif
