@@ -25,7 +25,7 @@ bool Board::gameEnded() const
 }
 
 // Dtor.
-Board::~Board() 
+Board::~Board() noexcept
 {
     // Delete the window.
     if(m_window)
@@ -128,7 +128,7 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
     
     // Just in case.
     waitUntilRelease(sf::Keyboard::Return);
-};
+}
 
 #include <iostream>
 

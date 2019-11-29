@@ -33,7 +33,7 @@ class Board
     bool m_firstPlayer;
 
     // Current token
-    uint8_t m_currToken;
+    uint8_t m_currToken{0};
 
     // Array of tokens.
     Token* m_tokens[9];

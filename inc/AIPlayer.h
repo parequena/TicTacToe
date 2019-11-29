@@ -27,7 +27,7 @@ class AIPlayer : public Player
     bool m_firstMove;
 
     // Dtor.
-    ~AIPlayer();
+    ~AIPlayer() noexcept;
 
     // Pointer ftion to set the difficulty.
     uint8_t (AIPlayer::*pfunc)(const uint8_t*) const ;
