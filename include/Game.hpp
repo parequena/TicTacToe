@@ -5,8 +5,8 @@
     Date   : October 2019
 */
 
-#ifndef __GAME_H__
-#define __GAME_H__
+#ifndef GAME_H
+#define GAME_H
 
 // Forward delcarations.
 class Board;

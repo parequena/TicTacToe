@@ -9,9 +9,9 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <Game.h>
-#include <Board.h>
-#include <Menu.h>
+#include <Game.hpp>
+#include <Board.hpp>
+#include <Menu.hpp>
 
 #define df_windSize 500
 #define df_gameName "TicTacToe"
@@ -34,8 +34,8 @@ Game::Game() :
         sf::Style::Titlebar | sf::Style::Close);
 
     // Set-it on the middle of the screen.
-    m_window->setPosition(sf::Vector2i(sf::VideoMode::getDesktopMode().width / 2 - df_windSize / 2, 
-        sf::VideoMode::getDesktopMode().height / 2 - df_windSize / 2));
+    m_window->setPosition(sf::Vector2i(int(sf::VideoMode::getDesktopMode().width) / 2 - df_windSize / 2, 
+        int(sf::VideoMode::getDesktopMode().height) / 2 - df_windSize / 2));
 
     // Set the menu
     m_menu = new Menu(m_window);
@@ -58,7 +58,6 @@ void Game::play()
 {
     while(1)
     {
-        
         MenuSelect* s = m_menu->select();
         if(!s->m_play)
         {

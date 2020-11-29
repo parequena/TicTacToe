@@ -5,8 +5,8 @@
     Date   : October 2019
 */
 
-#ifndef __TOKEN_H__
-#define __TOKEN_H__
+#ifndef TOKEN_H
+#define TOKEN_H
 
 enum class TokenType { X, O };
 namespace sf { class Texture; class Sprite; class RenderWindow; }

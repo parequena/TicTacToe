@@ -5,8 +5,8 @@
     Date   : October 2019
 */
 
-#ifndef __MENU_H_
-#define __MENU_H_
+#ifndef MENU_H_
+#define MENU_H_
 
 namespace sf { class RenderWindow; class Font; class Text; }
 
@@ -16,16 +16,16 @@ struct MenuSelect
     bool m_play = true;
 
     // Checks how many players are going to play.
-    uint8_t m_nPlayers = 1;
+    std::uint8_t m_nPlayers = 1;
 
     // Check AI level.
-    uint8_t m_AILevel = 0;
+    std::uint8_t m_AILevel = 0;
 
     // Returns max posible players.
-    static uint8_t maxPlayers()  { return 2; }
+    static std::uint8_t maxPlayers()  { return 2; }
 
     // Returns max AI level.
-    static uint8_t maxAILevel()  { return 0; }
+    static std::uint8_t maxAILevel()  { return 0; }
 
     // Ctor
     MenuSelect()  { m_play = true; m_nPlayers = 1; m_AILevel = 0; }
@@ -49,7 +49,7 @@ class Menu
     MenuSelect* m_selection;
 
     // Position
-    uint8_t m_position;
+    std::uint8_t m_position;
 
     // Draw
     void draw() const ;

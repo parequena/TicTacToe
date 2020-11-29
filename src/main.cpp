@@ -5,7 +5,7 @@
     Date   : October 2019
 */
 
-#include <Game.h>
+#include <Game.hpp>
 
 int main()
 {

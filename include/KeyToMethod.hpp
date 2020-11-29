@@ -5,8 +5,8 @@
     Date   : October 2019
 */
 
-#ifndef __KEYTOMETHOD_H__
-#define __KEYTOMETHOD_H__
+#ifndef KEYTOMETHOD_H
+#define KEYTOMETHOD_H
 
 #include <SFML/Graphics.hpp>
 
@@ -19,17 +19,17 @@ void waitUntilRelease(sf::Keyboard::Key k) ;
 struct KeyToMethod
 {
     sf::Keyboard::Key m_key;
-    uint8_t (*pfunc)(uint8_t) ;
+    std::uint8_t (*pfunc)(std::uint8_t) ;
 };
 
  // Menu functions to move.
-uint8_t menu_moveUp(uint8_t i) ;
-uint8_t menu_moveDown(uint8_t i) ;
+std::uint8_t menu_moveUp(std::uint8_t i) ;
+std::uint8_t menu_moveDown(std::uint8_t i) ;
 
 // Board functions to move
-uint8_t board_moveUp(uint8_t i) ;
-uint8_t board_moveDown(uint8_t i) ;
-uint8_t board_moveLeft(uint8_t i) ;
-uint8_t board_moveRight(uint8_t i) ;
+std::uint8_t board_moveUp(std::uint8_t i) ;
+std::uint8_t board_moveDown(std::uint8_t i) ;
+std::uint8_t board_moveLeft(std::uint8_t i) ;
+std::uint8_t board_moveRight(std::uint8_t i) ;
 
 #endif

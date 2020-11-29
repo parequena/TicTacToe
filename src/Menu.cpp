@@ -6,8 +6,8 @@
 */
 
 #include <SFML/Graphics.hpp>
-#include <Menu.h>
-#include <KeyToMethod.h>
+#include <Menu.hpp>
+#include <KeyToMethod.hpp>
 
 // Draw
 void Menu::draw() const 
@@ -74,25 +74,25 @@ Menu::~Menu() noexcept
 }
 
 // Board key to method.
-KeyToMethod menu_ktom[] =
+static KeyToMethod menu_ktom[] =
 {
     { sf::Keyboard::W      , menu_moveUp    },
     { sf::Keyboard::S      , menu_moveDown  },
 
     { sf::Keyboard::Up     , menu_moveUp    },
     { sf::Keyboard::Down   , menu_moveDown  },
-    { sf::Keyboard::Unknown, 0}
+    { sf::Keyboard::Unknown, nullptr}
 };
 
 // Board key to method.
-KeyToMethod menu_ktom2[] =
+static KeyToMethod menu_ktom2[] =
 {
     { sf::Keyboard::A      , menu_moveUp    },
     { sf::Keyboard::D      , menu_moveDown  },
 
     { sf::Keyboard::Left   , menu_moveUp    },
     { sf::Keyboard::Right  , menu_moveDown  },
-    { sf::Keyboard::Unknown, 0}
+    { sf::Keyboard::Unknown, nullptr}
 };
 
 #include <iostream>
@@ -108,7 +108,7 @@ MenuSelect* Menu::select()
     (4) Exit
     */
     KeyToMethod *kb = menu_ktom, *kb2 = menu_ktom2;
-    uint8_t pos = 0;
+    std::uint8_t pos = 0;
 
     do
     {   

@@ -9,11 +9,11 @@
 #include <ctime>
 #include <cstdlib>
 
-#include <Board.h>
-#include <AIPlayer.h>
-#include <HumanPlayer.h>
-#include <Token.h>
-#include <KeyToMethod.h>
+#include <Board.hpp>
+#include <AIPlayer.hpp>
+#include <HumanPlayer.hpp>
+#include <Token.hpp>
+#include <KeyToMethod.hpp>
 
 #define df_boardPath "./res/box.png"
 
@@ -42,33 +42,24 @@ Board::~Board() noexcept
     }
 
     // Delete the sprites.
-    if(m_sprites)
+    for(auto &s : m_sprites)
     {
-        for(auto &s : m_sprites)
-        {
-            delete s;
-            s = nullptr;
-        }
+        delete s;
+        s = nullptr;
     }
 
     // Delete the players.
-    if(m_players)
+    for(auto &s : m_players)
     {
-        for(auto &s : m_players)
-        {
-            delete s;
-            s = nullptr;
-        }
+        delete s;
+        s = nullptr;
     }
 
     // Delete the tokens.
-    if(m_tokens)
+    for(auto &s : m_tokens)
     {
-        for(auto &s : m_tokens)
-        {
-            delete s;
-            s = nullptr;
-        }
+        delete s;
+        s = nullptr;
     }
 }
 
@@ -76,18 +67,11 @@ Board::~Board() noexcept
 ///////////////////////////// PUBLIC /////////////////////////////
 //////////////////////////////////////////////////////////////////
 // Ctor.
-Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
-    m_board{0, 0, 0, 0, 0, 0, 0, 0, 0},
-    m_window(nullptr),
-    m_texture(nullptr),
-    m_sprites{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
-    m_firstPlayer(false),
-    m_currToken(0),
-    m_players{nullptr, nullptr},
-    m_tokens{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}
+Board::Board(sf::RenderWindow* window, std::uint8_t nplayers, std::uint8_t difficulty)
 {
     // Set the first player.
-    srand(time(NULL));
+    std::srand( static_cast<unsigned int>(std::time(nullptr)));
+
     m_firstPlayer = static_cast<bool>(rand() % 2);
 
     // Set the window
@@ -130,12 +114,10 @@ Board::Board(sf::RenderWindow* window, uint8_t nplayers, uint8_t difficulty):
     waitUntilRelease(sf::Keyboard::Return);
 }
 
-#include <iostream>
-
 // Play.
-uint8_t Board::play() 
+std::uint8_t Board::play() 
 {
-    uint8_t selected = 0;
+    std::uint8_t selected = 0;
     // Draw the board.
     draw();
 

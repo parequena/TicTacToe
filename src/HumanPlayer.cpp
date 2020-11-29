@@ -6,14 +6,14 @@
 */
 
 #include <SFML/Graphics.hpp>
-#include <HumanPlayer.h>
-#include <KeyToMethod.h>
+#include <HumanPlayer.hpp>
+#include <KeyToMethod.hpp>
 
 #define df_selectorPath "./res/selector"
 
 // Init idsx
-uint8_t HumanPlayer::m_id = 1;
-uint8_t Player::m_staticId = 1;
+std::uint8_t HumanPlayer::m_id = 1;
+std::uint8_t Player::m_staticId = 1;
 
 
 // Board key to method.
@@ -33,7 +33,7 @@ KeyToMethod board_ktom[] =
 
 
 // Is valid
-bool HumanPlayer::isValid(uint8_t pos, const uint8_t board[9]) 
+bool HumanPlayer::isValid(std::uint8_t pos, const std::uint8_t board[9]) 
 {
     return pos < 9 && board[pos] == 0;
 }
@@ -65,7 +65,7 @@ HumanPlayer::HumanPlayer(sf::RenderWindow* window):
 
     // Set position
     m_position = 4;
-    m_sprite->setPosition(m_pos[m_position%3], m_pos[m_position/3]);
+    m_sprite->setPosition(float(m_pos[m_position%3]), float(m_pos[m_position/3]));
     
     // Set the keyboard manager.
     m_keyboard = board_ktom;
@@ -110,7 +110,7 @@ HumanPlayer::~HumanPlayer() noexcept
 }
 
 // Select wich position are we going to place the Token.
-uint8_t HumanPlayer::selectBox(const uint8_t board[9]) 
+std::uint8_t HumanPlayer::selectBox(const std::uint8_t board[9]) 
 {
     // Loop into the keys.
     while(m_keyboard->m_key != sf::Keyboard::Unknown)
@@ -124,7 +124,7 @@ uint8_t HumanPlayer::selectBox(const uint8_t board[9])
         ++m_keyboard;
     }
 
-    m_sprite->setPosition(m_pos[m_position%3], m_pos[m_position/3]);
+    m_sprite->setPosition(float(m_pos[m_position%3]), float(m_pos[m_position/3]));
     m_keyboard = board_ktom; // Set keyboard to init.
 
     if(isValid(m_position, board))

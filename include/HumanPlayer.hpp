@@ -5,24 +5,24 @@
     Date   : October 2019
 */
 
-#ifndef __HUMANPLAYER_H__
-#define __HUMANPLAYER_H__
+#ifndef HUMANPLAYER_H
+#define HUMANPLAYER_H
 
 namespace sf { class Texture; class Sprite; class RenderWindow; }
-#include <Player.h>
+#include <Player.hpp>
 struct KeyToMethod;
 
 // Move up.
-void moveUp(uint8_t& pos) ;
+void moveUp(std::uint8_t& pos) ;
 
 // Move left.
-void moveLeft(uint8_t& pos) ;
+void moveLeft(std::uint8_t& pos) ;
 
 // Move right.
-void moveRight(uint8_t& pos) ;
+void moveRight(std::uint8_t& pos) ;
 
 // Move down.
-void moveDown(uint8_t& pos) ;
+void moveDown(std::uint8_t& pos) ;
 
 class HumanPlayer : public Player
 {
@@ -33,10 +33,10 @@ class HumanPlayer : public Player
     const int m_pos[3];
 
     // Selected position.
-    uint8_t m_position;
+    std::uint8_t m_position;
 
     // Static id.
-    static uint8_t m_id;
+    static std::uint8_t m_id;
     
     // Window
     sf::RenderWindow* m_window;
@@ -51,20 +51,20 @@ class HumanPlayer : public Player
     KeyToMethod* m_keyboard;
 
     // Check if is valid.
-    static bool isValid(uint8_t pos, const uint8_t board[9]) ;
+    static bool isValid(std::uint8_t pos, const std::uint8_t board[9]) ;
 
 public:
     // Ctor.
     HumanPlayer(sf::RenderWindow* window);
 
     // Dtor.
-    ~HumanPlayer() noexcept;
+    ~HumanPlayer() noexcept override;
 
     // Select wich position are we going to place the Token.
-    uint8_t selectBox(const uint8_t board[9]) ;
+    std::uint8_t selectBox(const std::uint8_t board[9]) override;
 
     // Draw.
-    void draw();
+    void draw() override;
 };
 
 #endif

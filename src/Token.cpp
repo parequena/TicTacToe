@@ -8,7 +8,7 @@
 #include <cstdint>
 #include <SFML/Graphics.hpp>
 
-#include <Token.h>
+#include <Token.hpp>
 
 #define df_XPath "./res/x.png"
 #define df_OPath "./res/o.png"

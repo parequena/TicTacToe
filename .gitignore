@@ -2,7 +2,10 @@
 ~
 */*~*
 obj/
+build/
 exe
+logs
+.vscode
 
 
 # Prerequisites
