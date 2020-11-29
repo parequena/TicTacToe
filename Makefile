@@ -8,7 +8,7 @@
 
 .PHONY: all cls clean clc clear info
 
-CC       := g++ -std=c++17
+CC       := g++ -std=c++2a
 CCFLAGS  := -Wall -Wextra -pedantic-errors
 LIBS     := -lsfml-graphics -lsfml-window -lsfml-system #-ljsoncpp -lstdc++fs
 SRC_DIR  := src
