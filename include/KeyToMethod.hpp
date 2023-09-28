@@ -9,6 +9,7 @@
 #define KEYTOMETHOD_H
 
 #include <SFML/Graphics.hpp>
+#include <cstdint> // std::uint8_t
 
 #define df_maxMenuOpt 4
 

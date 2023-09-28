@@ -8,6 +8,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <cstdint> // std::uint8_t
+
 namespace sf { class Texture; class Sprite; class RenderWindow; }
 class Player;
 class Token;

@@ -8,6 +8,8 @@
 #ifndef MENU_H_
 #define MENU_H_
 
+#include <cstdint> // std::uint8_t
+
 namespace sf { class RenderWindow; class Font; class Text; }
 
 struct MenuSelect
