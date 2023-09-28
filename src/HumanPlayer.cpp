@@ -15,25 +15,22 @@
 std::uint8_t HumanPlayer::m_id = 1;
 std::uint8_t Player::m_staticId = 1;
 
-
 // Board key to method.
-KeyToMethod board_ktom[] =
+static constexpr std::array<KeyToMethod, 8> board_ktom
 {
-    { sf::Keyboard::W      , board_moveUp    },
-    { sf::Keyboard::A      , board_moveLeft  },
-    { sf::Keyboard::S      , board_moveDown  },
-    { sf::Keyboard::D      , board_moveRight },
+    KeyToMethod{ sf::Keyboard::W      , board_moveUp    },
+    KeyToMethod{ sf::Keyboard::A      , board_moveLeft  },
+    KeyToMethod{ sf::Keyboard::S      , board_moveDown  },
+    KeyToMethod{ sf::Keyboard::D      , board_moveRight },
 
-    { sf::Keyboard::Up     , board_moveUp    },
-    { sf::Keyboard::Left   , board_moveLeft  },
-    { sf::Keyboard::Down   , board_moveDown  },
-    { sf::Keyboard::Right  , board_moveRight },
-    { sf::Keyboard::Unknown, 0}
+    KeyToMethod{ sf::Keyboard::Up     , board_moveUp    },
+    KeyToMethod{ sf::Keyboard::Left   , board_moveLeft  },
+    KeyToMethod{ sf::Keyboard::Down   , board_moveDown  },
+    KeyToMethod{ sf::Keyboard::Right  , board_moveRight }
 };
 
-
 // Is valid
-bool HumanPlayer::isValid(std::uint8_t pos, const std::uint8_t board[9]) 
+bool HumanPlayer::isValid(std::uint8_t pos, std::array<std::uint8_t, 9> const& board) 
 {
     return pos < 9 && board[pos] == 0;
 }
@@ -43,7 +40,6 @@ bool HumanPlayer::isValid(std::uint8_t pos, const std::uint8_t board[9])
 //////////////////////////////////////////////////////////////////
 // Ctor.
 HumanPlayer::HumanPlayer(sf::RenderWindow* window):
-    m_selecting(false),
     m_pos{58, 186, 314},
     m_position(5),
     m_window(nullptr),
@@ -66,9 +62,6 @@ HumanPlayer::HumanPlayer(sf::RenderWindow* window):
     // Set position
     m_position = 4;
     m_sprite->setPosition(float(m_pos[m_position%3]), float(m_pos[m_position/3]));
-    
-    // Set the keyboard manager.
-    m_keyboard = board_ktom;
 
     // Increase the id
     m_playerId = m_staticId++;
@@ -98,34 +91,25 @@ HumanPlayer::~HumanPlayer() noexcept
         m_sprite = nullptr;
     }
 
-    if(m_keyboard)
-    {
-        // delete m_keyboard; // We are not doing a new!
-        m_keyboard = nullptr;
-    }
-
     // Decrease the id.
     --m_staticId;
     --m_id;
 }
 
 // Select wich position are we going to place the Token.
-std::uint8_t HumanPlayer::selectBox(const std::uint8_t board[9]) 
+std::uint8_t HumanPlayer::selectBox(std::array<std::uint8_t, 9> const& board) 
 {
-    // Loop into the keys.
-    while(m_keyboard->m_key != sf::Keyboard::Unknown)
+    for(auto const [key, pFunc] : board_ktom)
     {
         // If any is pressed.
-        if(sf::Keyboard::isKeyPressed(m_keyboard->m_key))
+        if(sf::Keyboard::isKeyPressed(key))
         {
-            m_position = m_keyboard->pfunc(m_position); // Call the function.
-            waitUntilRelease(m_keyboard->m_key);
+            m_position = pFunc(m_position); // Call the function.
+            waitUntilRelease(key);
         }
-        ++m_keyboard;
     }
 
-    m_sprite->setPosition(float(m_pos[m_position%3]), float(m_pos[m_position/3]));
-    m_keyboard = board_ktom; // Set keyboard to init.
+    m_sprite->setPosition(m_pos[m_position%3], m_pos[m_position/3]);
 
     if(isValid(m_position, board))
         return m_position;

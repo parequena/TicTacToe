@@ -16,13 +16,13 @@ namespace sf { class RenderWindow; }
 class Game
 {
     // Window.
-    sf::RenderWindow* m_window;
+    sf::RenderWindow* m_window{};
 
     // Menu.
-    Menu* m_menu;
+    Menu* m_menu{};
 
     // Playing board.
-    Board* m_board;
+    Board* m_board{};
 
 public:
     // Ctor.

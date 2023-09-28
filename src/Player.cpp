@@ -1,7 +1,10 @@
 #include <Player.hpp>
 
+// Dtor.
+Player::~Player() = default;
+
 // Check winner.
-bool Player::checkWinner(const std::uint8_t board[9]) 
+bool Player::checkWinner(std::array<std::uint8_t, 9> const& board) 
 {
     return (board[0] != 0
             && (((board[0] == board[1]) && (board[0] == board[2]))                    /* 0-1-2 */
@@ -16,7 +19,7 @@ bool Player::checkWinner(const std::uint8_t board[9])
 }
 
 // Get the winner.
-std::uint8_t Player::getWinner(const std::uint8_t board[9]) 
+std::uint8_t Player::getWinner(std::array<std::uint8_t, 9> const& board) 
 {
     if(board[0] != 0 &&
     (   ((board[0] == board[1]) && (board[0] == board[2]))

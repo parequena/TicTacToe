@@ -9,6 +9,7 @@
 #define BOARD_H
 
 #include <cstdint> // std::uint8_t
+#include <array> // std::array
 
 namespace sf { class Texture; class Sprite; class RenderWindow; }
 class Player;
@@ -17,7 +18,7 @@ class Token;
 class Board
 {
     // Boad.
-    std::uint8_t m_board[9]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+    std::array<std::uint8_t, 9> m_board{ 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     // Window
     sf::RenderWindow* m_window{};
@@ -26,10 +27,10 @@ class Board
     sf::Texture* m_texture{};
 
     // Sprite.
-    sf::Sprite* m_sprites[9]{};
+    std::array<sf::Sprite*, 9> m_sprites{};
 
     // Players.
-    Player* m_players[2]{};
+    std::array<Player*, 2> m_players{};
 
     // Bool that controlls which player moves.
     bool m_firstPlayer{false};
@@ -38,13 +39,13 @@ class Board
     std::uint8_t m_currToken{0};
 
     // Array of tokens.
-    Token* m_tokens[9]{};
+    std::array<Token*, 9> m_tokens{};
 
     // Game end.
-    bool gameEnded() const ;
+    bool gameEnded() const;
 
     // Is valid
-    bool isValid(std::uint8_t position) const ;
+    bool isValid(std::uint8_t position) const;
 
 public:
     // Ctor.

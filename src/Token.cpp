@@ -6,6 +6,7 @@
 */
 
 #include <cstdint>
+#include <array> // std::array
 #include <SFML/Graphics.hpp>
 
 #include <Token.hpp>
@@ -30,7 +31,7 @@ Token::Token(sf::RenderWindow* window, uint16_t boardPosition, TokenType type):
     else m_texture->loadFromFile(df_XPath);
 
     // Positions.
-    uint16_t coords[3] = {df_init, 186, 314};
+    static constexpr std::array<float, 3> coords{ 58.f , 186.f, 314.f};
     m_sprite = new sf::Sprite(*m_texture);
     m_sprite->setPosition(coords[boardPosition%3], coords[boardPosition/3]);
 }

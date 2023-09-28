@@ -26,32 +26,26 @@ void moveDown(std::uint8_t& pos) ;
 
 class HumanPlayer : public Player
 {
-    // Selecting or not
-    bool m_selecting;
-
     // Vertor of positions.
-    const int m_pos[3];
+    std::array<float, 3> m_pos{};
 
     // Selected position.
-    std::uint8_t m_position;
+    std::uint8_t m_position{};
 
     // Static id.
     static std::uint8_t m_id;
     
     // Window
-    sf::RenderWindow* m_window;
+    sf::RenderWindow* m_window{};
 
     // Texture. 
-    sf::Texture* m_texture;
+    sf::Texture* m_texture{};
 
     // Sprite.
-    sf::Sprite* m_sprite;
-
-    // Keyboad
-    KeyToMethod* m_keyboard;
+    sf::Sprite* m_sprite{};
 
     // Check if is valid.
-    static bool isValid(std::uint8_t pos, const std::uint8_t board[9]) ;
+    static bool isValid(std::uint8_t pos, std::array<std::uint8_t, 9> const& board);
 
 public:
     // Ctor.
@@ -61,7 +55,7 @@ public:
     ~HumanPlayer() noexcept override;
 
     // Select wich position are we going to place the Token.
-    std::uint8_t selectBox(const std::uint8_t board[9]) override;
+    std::uint8_t selectBox(std::array<std::uint8_t, 9> const& board) override;
 
     // Draw.
     void draw() override;

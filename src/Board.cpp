@@ -41,13 +41,6 @@ Board::~Board() noexcept
         m_texture = nullptr;
     }
 
-    // Delete the sprites.
-    for(auto &s : m_sprites)
-    {
-        delete s;
-        s = nullptr;
-    }
-
     // Delete the players.
     for(auto &s : m_players)
     {
@@ -86,8 +79,8 @@ Board::Board(sf::RenderWindow* window, std::uint8_t nplayers, std::uint8_t diffi
     // Load Sprites.
     m_window->clear(sf::Color::White);
 
-    uint16_t coords[3] = {df_init, 186, 314};
-    for(auto i = 0; i < 9; ++i)
+    static constexpr std::array<float, 3> coords{ 58.f , 186.f, 314.f};
+    for(std::size_t i = 0; i < 9; ++i)
     {
         m_sprites[i] = new sf::Sprite(*m_texture);
         m_sprites[i]->setPosition(coords[i/3], coords[i%3]);
@@ -165,7 +158,7 @@ void Board::draw()
         m_window->draw(*s);
 
     // Draw the tokens.
-    for(auto i = 0; i < m_currToken; ++i)
+    for(std::size_t i = 0; i < m_currToken; ++i)
         m_tokens[i]->draw();
 
     // Draw the player

@@ -9,6 +9,8 @@
 #define MENU_H_
 
 #include <cstdint> // std::uint8_t
+#include <array> // std::array
+#include <KeyToMethod.hpp>
 
 namespace sf { class RenderWindow; class Font; class Text; }
 
@@ -24,10 +26,10 @@ struct MenuSelect
     std::uint8_t m_AILevel = 0;
 
     // Returns max posible players.
-    static std::uint8_t maxPlayers()  { return 2; }
+    static constexpr std::uint8_t maxPlayers()  { return 2; }
 
     // Returns max AI level.
-    static std::uint8_t maxAILevel()  { return 0; }
+    static constexpr std::uint8_t maxAILevel()  { return 0; }
 
     // Ctor
     MenuSelect()  { m_play = true; m_nPlayers = 1; m_AILevel = 0; }
@@ -36,25 +38,25 @@ struct MenuSelect
 class Menu
 {
     // Window.
-    sf::RenderWindow* m_window;
+    sf::RenderWindow* m_window{};
 
     // Font.
-    sf::Font* m_font;
+    sf::Font* m_font{};
 
     // Title
-    sf::Text* m_title;
+    sf::Text* m_title{};
 
     // Text.
-    sf::Text* m_texts[5];
+    std::array<sf::Text*, 5> m_texts{};
 
     // Menu Selection.
-    MenuSelect* m_selection;
+    MenuSelect* m_selection{};
 
     // Position
-    std::uint8_t m_position;
+    std::uint8_t m_position{};
 
     // Draw
-    void draw() const ;
+    void draw() const;
 
 public:
     // Ctor.

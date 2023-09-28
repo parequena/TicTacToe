@@ -27,13 +27,13 @@ class AIPlayer : public Player
     bool m_firstMove{true};
 
     // Pointer ftion to set the difficulty.
-    std::uint8_t (AIPlayer::*pfunc)(const std::uint8_t*) const;
+    std::uint8_t (AIPlayer::*pfunc)(std::array<std::uint8_t, 9> const&) const;
 
     // Difficulty 0.
-    std::uint8_t difficulty0(const std::uint8_t board[9]) const;
+    std::uint8_t difficulty0(std::array<std::uint8_t, 9> const& board) const;
 
     // Difficulty 1.
-    std::uint8_t difficulty1(const std::uint8_t board[9]) const;
+    std::uint8_t difficulty1(std::array<std::uint8_t, 9> const& board) const;
     
 public:
     // Ctor.
@@ -43,7 +43,7 @@ public:
     ~AIPlayer() noexcept override;
 
     // Select wich position are we going to place the Token.
-    std::uint8_t selectBox(const std::uint8_t board[9])  override;
+    std::uint8_t selectBox(std::array<std::uint8_t, 9> const& board)  override;
 
     // Draw
     void draw()  override;
