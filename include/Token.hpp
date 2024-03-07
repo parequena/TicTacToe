@@ -8,31 +8,40 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
-enum class TokenType { X, O };
-namespace sf { class Texture; class Sprite; class RenderWindow; }
+enum class TokenType
+{
+   X,
+   O
+};
+namespace sf
+{
+class Texture;
+class Sprite;
+class RenderWindow;
+}
 
 // #define df_init 58
 
 class Token
 {
-    // Window.
-    sf::RenderWindow* m_window{};
+   // Window.
+   sf::RenderWindow* m_window{};
 
-    // Texture.
-    sf::Texture* m_texture{};
+   // Texture.
+   sf::Texture* m_texture{};
 
-    // Sprite.
-    sf::Sprite* m_sprite{};
+   // Sprite.
+   sf::Sprite* m_sprite{};
 
 public:
-    // Ctor.
-    Token(sf::RenderWindow* window, uint16_t boardPos, TokenType type);
+   // Ctor.
+   Token(sf::RenderWindow* window, uint16_t boardPos, TokenType type);
 
-    // Dtor.
-    ~Token() noexcept;
+   // Dtor.
+   ~Token() noexcept;
 
-    // Draw.
-    void draw();
+   // Draw.
+   void draw();
 };
 
 #endif

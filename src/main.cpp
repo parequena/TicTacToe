@@ -9,9 +9,9 @@
 
 int main()
 {
-    Game* g = new Game();
-    g->play();
-    delete g;
+   Game* g = new Game();
+   g->play();
+   delete g;
 
-    return 0;
+   return 0;
 }

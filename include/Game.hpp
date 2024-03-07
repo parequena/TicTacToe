@@ -11,28 +11,31 @@
 // Forward delcarations.
 class Board;
 class Menu;
-namespace sf { class RenderWindow; }
+namespace sf
+{
+class RenderWindow;
+}
 
 class Game
 {
-    // Window.
-    sf::RenderWindow* m_window{};
+   // Window.
+   sf::RenderWindow* m_window{};
 
-    // Menu.
-    Menu* m_menu{};
+   // Menu.
+   Menu* m_menu{};
 
-    // Playing board.
-    Board* m_board{};
+   // Playing board.
+   Board* m_board{};
 
 public:
-    // Ctor.
-    Game();
+   // Ctor.
+   Game();
 
-    // Dtor.
-    ~Game() noexcept;
+   // Dtor.
+   ~Game() noexcept;
 
-    // Play
-    void play();
+   // Play
+   void play();
 };
 
 #endif

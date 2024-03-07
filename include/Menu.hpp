@@ -8,65 +8,75 @@
 #ifndef MENU_H_
 #define MENU_H_
 
-#include <cstdint> // std::uint8_t
-#include <array> // std::array
 #include <KeyToMethod.hpp>
+#include <array>   // std::array
+#include <cstdint> // std::uint8_t
 
-namespace sf { class RenderWindow; class Font; class Text; }
+namespace sf
+{
+class RenderWindow;
+class Font;
+class Text;
+}
 
 struct MenuSelect
 {
-    // Bool that controlles if we want to play, or not.
-    bool m_play = true;
+   // Bool that controlles if we want to play, or not.
+   bool m_play = true;
 
-    // Checks how many players are going to play.
-    std::uint8_t m_nPlayers = 1;
+   // Checks how many players are going to play.
+   std::uint8_t m_nPlayers = 1;
 
-    // Check AI level.
-    std::uint8_t m_AILevel = 0;
+   // Check AI level.
+   std::uint8_t m_AILevel = 0;
 
-    // Returns max posible players.
-    static constexpr std::uint8_t maxPlayers()  { return 2; }
+   // Returns max posible players.
+   static constexpr std::uint8_t maxPlayers() { return 2; }
 
-    // Returns max AI level.
-    static constexpr std::uint8_t maxAILevel()  { return 0; }
+   // Returns max AI level.
+   static constexpr std::uint8_t maxAILevel() { return 0; }
 
-    // Ctor
-    MenuSelect()  { m_play = true; m_nPlayers = 1; m_AILevel = 0; }
+   // Ctor
+   MenuSelect()
+   {
+      m_play = true;
+      m_nPlayers = 1;
+      m_AILevel = 0;
+   }
 };
 
 class Menu
 {
-    // Window.
-    sf::RenderWindow* m_window{};
+   // Window.
+   sf::RenderWindow* m_window{};
 
-    // Font.
-    sf::Font* m_font{};
+   // Font.
+   sf::Font* m_font{};
 
-    // Title
-    sf::Text* m_title{};
+   // Title
+   sf::Text* m_title{};
 
-    // Text.
-    std::array<sf::Text*, 5> m_texts{};
+   // Text.
+   std::array<sf::Text*, 5> m_texts{};
 
-    // Menu Selection.
-    MenuSelect* m_selection{};
+   // Menu Selection.
+   MenuSelect* m_selection{};
 
-    // Position
-    std::uint8_t m_position{};
+   // Position
+   std::uint8_t m_position{};
 
-    // Draw
-    void draw() const;
+   // Draw
+   void draw() const;
 
 public:
-    // Ctor.
-    Menu(sf::RenderWindow* window);
+   // Ctor.
+   Menu(sf::RenderWindow* window);
 
-    // Dtor.
-    ~Menu() noexcept;
+   // Dtor.
+   ~Menu() noexcept;
 
-    // Select
-    MenuSelect* select();
+   // Select
+   MenuSelect* select();
 };
 
 #endif

@@ -1,0 +1,14 @@
+# Format Style Options - Created with Clang Power Tools
+---
+AccessModifierOffset: -2
+AlignTrailingComments: true
+AllowShortFunctionsOnASingleLine: All
+BasedOnStyle: WebKit
+BreakBeforeBraces: Allman
+ColumnLimit: 80
+AlignOperands: false
+ContinuationIndentWidth: 2
+IndentWidth: 2
+SortIncludes: true
+SpaceBeforeCpp11BracedList: false
+UseTab: Never

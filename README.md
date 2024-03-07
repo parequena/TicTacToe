@@ -59,19 +59,19 @@ Thanks to make, we can compile the code using a terminal.
 
 ## Some Images
 <p align="center"><strong>Menu</strong></p>
-<p align="center"><img width="248" height="261" src="https://github.com/parequena/TicTacToe/blob/master/githubResource/menu.png"></p>
+<p align="center"><img width="248" height="261" src=".githubResource/menu.png"></p>
 
 <p align="center"><strong>Board, both Tokens and Human Selector</strong></p>
-<p align="center"><img width="249" height="263" src="https://github.com/parequena/TicTacToe/blob/master/githubResource/both_tokens.png"></p>
+<p align="center"><img width="249" height="263" src=".githubResource/both_tokens.png"></p>
 
 <p align="center"><strong>Board, both Tokens and Human Selector</strong></p>
 <p align="center">
-<img width="128" height="128" src="https://github.com/parequena/TicTacToe/blob/master/res/selector1.png">
-<img width="128" height="128" src="https://github.com/parequena/TicTacToe/blob/master/res/selector2.png">
+<img width="128" height="128" src=".resource/selector1.png">
+<img width="128" height="128" src=".resource/selector2.png">
 </p>
 
 <p align="center"><strong>AI Selector</strong></p>
-<p align="center"><img width="300" height="300" src="https://github.com/parequena/TicTacToe/blob/master/githubResource/ai_choose.png"></p>
+<p align="center"><img width="300" height="300" src=".githubResource/ai_choose.png"></p>
 
 
 # Resources
