@@ -1,12 +1,6 @@
 # Tic Tac Toe
 
-This TicTacToe developped by Pablo Requena González using SFML 2.5.2 on Manajro (Arch Linux).
-
-[Twitter](https://twitter.com/conPdePABLO)
-
-[LinkedIn](https://www.linkedin.com/in/pablo-requena-gonz%C3%A1lez-387366146/)
-
-[GitHub](https://github.com/parequena)
+This TicTacToe developped by Pablo Requena González using SFML 2.5.2 on Manjaro (Arch Linux).
 
 ## Features
 
@@ -77,3 +71,11 @@ Thanks to make, we can compile the code using a terminal.
 # Resources
 - **Robot image:** https://emojiisland.com/products/robot-iphone-emoji-jpg
 - **Font:** https://www.dafont.com/es/lemon-milk.font
+
+# Get in Touch
+If you want to get in touch with me, here are my social networks
+- [Twitter](https://x.com/conPdePABLO)
+- [BlueSky](https://bsky.app/profile/theapoca.bsky.social)
+- [Youtube](https://www.youtube.com/@conpdepab)
+- [Instagram](https://www.instagram.com/conpdepab/)
+- [LinkedIn](https://www.linkedin.com/in/parequena/)
